@@ -2,19 +2,19 @@
 lib = File.expand_path('../lib/', __FILE__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
-require 'spree_analytics/version'
+require 'spree_analytics_trackers/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_analytics'
-  s.version     = SpreeAnalytics.version
-  s.summary     = 'Add extension summary here'
-  s.description = 'Add (optional) extension description here'
+  s.name        = 'spree_analytics_trackers'
+  s.version     = SpreeAnalyticsTrackers.version
+  s.summary     = 'Adds analytics trackers functionality to Spree'
+  s.description = 'Currently supports segment.com and google'
   s.required_ruby_version = '>= 2.2.7'
 
   s.author    = 'Bartosz Bonisławski'
   s.email     = 'b.bonislawski@hotmail.com'
-  s.homepage  = 'https://github.com/spree-contrib/spree_analytics'
+  s.homepage  = 'https://github.com/spree-contrib/spree_analytics_trackers'
   s.license = 'BSD-3-Clause'
 
   s.require_path = 'lib'
@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'pg'
   s.add_development_dependency 'mysql2'
   s.add_development_dependency 'appraisal'

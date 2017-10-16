@@ -1,13 +1,11 @@
-SpreeAnalytics
+SpreeAnalyticsTrackers
 ==============
-
-Introduction goes here.
 
 ## Installation
 
 1. Add this extension to your Gemfile with this line:
   ```ruby
-  gem 'spree_analytics', github: '[your-github-handle]/spree_analytics'
+  gem 'spree_analytics_trackers', github: 'spree-contrib/spree_analytics_trackers'
   ```
 
 2. Install the gem using Bundler:
@@ -17,7 +15,7 @@ Introduction goes here.
 
 3. Copy & run migrations
   ```ruby
-  bundle exec rails g spree_analytics:install
+  bundle exec rails g spree_analytics_trackers:install
   ```
 
 4. Restart your server
@@ -37,7 +35,7 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree_analytics/factories'
+require 'spree_analytics_trackers/factories'
 ```
 
 
@@ -47,4 +45,4 @@ If you'd like to contribute, please take a look at the
 [instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
 pull request.
 
-Copyright (c) 2017 [name of extension creator], released under the New BSD License
+Copyright (c) 2017 [Spark Solutions](https://www.sparksolutions.co "Spark Soutions"), released under the New BSD License

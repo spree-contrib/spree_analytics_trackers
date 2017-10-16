@@ -1,0 +1,9 @@
+<% if params.key?(:keywords) %>
+  <script>
+    if (typeof analytics !== 'undefined') {
+      analytics.track('Products Searched', {
+        query: '<%= params[:keywords] %>',
+      });
+    }
+  </script>
+<% end %>

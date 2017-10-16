@@ -1,7 +1,7 @@
-module SpreeAnalytics
+module SpreeAnalyticsTrackers
   module_function
 
-  # Returns the version of the currently loaded SpreeAnalytics as a
+  # Returns the version of the currently loaded SpreeAnalyticsTrackers as a
   # <tt>Gem::Version</tt>.
   def version
     Gem::Version.new VERSION::STRING
