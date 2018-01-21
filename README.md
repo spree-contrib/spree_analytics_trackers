@@ -1,5 +1,17 @@
-SpreeAnalyticsTrackers
-==============
+# Spree Analytics Trackers
+
+This extensions adds support for [Google Analytics Enhanced Ecommerce](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce)
+and [Segment Ecommerce](https://segment.com/docs/spec/ecommerce/v2/) tracking to [Spree Commerce](https://spreecommerce.org) stores.
+
+Via Segment.com you can plug-in also a lot of additional vendors and services like:
+* Mixpanel
+* Kissmetrics
+* Google Tag Manager
+* Facebook Pixels
+* Google Adwords remarketing
+* [and hundreds others](https://segment.com/catalog#integrations/all)
+
+No additional development required.
 
 ## Installation
 
@@ -39,10 +51,21 @@ require 'spree_analytics_trackers/factories'
 ```
 
 
-## Contributing
+## License
 
-If you'd like to contribute, please take a look at the
-[instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
-pull request.
+Spree Analytics Trackers is copyright © 2017-2018
+[Spark Solutions Sp. z o.o.][spark]. It is free software,
+and may be redistributed under the terms specified in the
+[LICENCE](LICENSE) file.
 
-Copyright (c) 2017 [Spark Solutions](https://www.sparksolutions.co "Spark Soutions"), released under the New BSD License
+[LICENSE]: https://github.com/spree-contrib/spree_analytics_trackers/blob/master/LICENSE
+
+## About Spark Solutions
+[![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
+
+Spree Analytics Trackers is maintained by [Spark Solutions Sp. z o.o.](http://sparksolutions.co?utm_source=github).
+
+We are passionate about open source software.
+We are [available for hire][spark].
+
+[spark]:http://sparksolutions.co?utm_source=github
