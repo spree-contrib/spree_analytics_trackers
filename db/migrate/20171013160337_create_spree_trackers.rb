@@ -7,12 +7,11 @@ class CreateSpreeTrackers < SpreeExtension::Migration[4.2]
       rename_column :spree_trackers, :kind, :engine if column_exists?(:spree_trackers, :kind)
     else
       create_table :spree_trackers do |t|
-        t.string "analytics_id"
-        t.boolean "active", default: true
-        t.datetime "created_at", null: false
-        t.datetime "updated_at", null: false
-        t.integer "engine", default: 0, null: false
-        t.index ["active"], name: "index_spree_trackers_on_active"
+        t.string 'analytics_id'
+        t.boolean 'active', default: true, index: true
+        t.datetime 'created_at', null: false
+        t.datetime 'updated_at', null: false
+        t.integer 'engine', default: 0, null: false, index: true
       end
     end
   end
