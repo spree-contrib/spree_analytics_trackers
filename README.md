@@ -1,5 +1,7 @@
 # Spree Analytics Trackers
 
+[![Build Status](https://travis-ci.org/spree-contrib/spree_analytics_trackers.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_analytics_trackers)
+
 This extensions adds support for [Google Analytics Enhanced Ecommerce](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce)
 and [Segment Ecommerce](https://segment.com/docs/spec/ecommerce/v2/) tracking to [Spree Commerce](https://spreecommerce.org) stores.
 
