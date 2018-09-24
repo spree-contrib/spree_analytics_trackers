@@ -1,5 +1,5 @@
 <% if can? :admin, Spree::Tracker %>
-  <ul class="nav nav-sidebar">
-    <%= tab :analytic_trackers, url: spree.admin_trackers_path, icon: 'tasks' %>
-  </ul>
+  <li class="sidebar-menu-item d-block w-100">
+    <%= link_to Spree.t(:analytics_trackers), spree.admin_trackers_path, class: 'py-1 px-3 d-block sidebar-submenu-item' %>
+  </li>
 <% end %>
