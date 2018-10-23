@@ -4,6 +4,9 @@
       analytics.track('Products Searched', {
         query: '<%= params[:keywords] %>',
       });
+      analytics.page('Products Searched', {
+        query: '<%= params[:keywords] %>',
+      });
     }
   </script>
 <% end %>
