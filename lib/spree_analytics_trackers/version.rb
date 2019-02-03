@@ -11,8 +11,7 @@ module SpreeAnalyticsTrackers
     MAJOR = 1
     MINOR = 0
     TINY  = 0
-    PRE   = 'rc2'.freeze
 
-    STRING = [MAJOR, MINOR, TINY, PRE].compact.join('.')
+    STRING = [MAJOR, MINOR, TINY].compact.join('.')
   end
 end
