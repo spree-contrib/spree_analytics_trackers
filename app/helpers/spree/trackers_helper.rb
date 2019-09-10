@@ -9,15 +9,24 @@ module Spree
         brand: product.brand.try(:name),
         price: product.price.to_f,
         currency: product.currency,
-        url: product_url(product),
+        url: product_url(product)
       }.tap do |hash|
-        # This method returns either asset_url (Paperclip) or rails_blob_path (ActiveStorage) to return the specified image(s)
-        if defined?(ActiveStorage) && !Rails.application.config.use_paperclip
-          hash[:image_url] =  request.base_url + Rails.application.routes.url_helpers.rails_blob_path(optional.delete(:image).attachment, only_path: true) if optional[:image]
-        else
-          hash[:image_url] = request.base_url + asset_url(optional.delete(:image).attachment) if optional[:image]
-        end
+        hash[:image_url] = product_for_segment_image_url(hash, optional)
       end.merge(optional).to_json.html_safe
+    end
+
+    private
+
+    # This method returns either asset_url (Paperclip) or rails_blob_path (ActiveStorage) to return the specified image(s)
+    def product_for_segment_image_url(hash, optional)
+      return unless optional[:image]
+
+      # Spree 4.0 dropped Paperclip support
+      if Gem.loaded_specs['spree_core'].version >= Gem::Version.create('4.0.0.alpha') || (defined?(ActiveStorage) && !Rails.application.config.use_paperclip)
+        request.base_url + Rails.application.routes.url_helpers.rails_blob_path(optional.delete(:image).attachment, only_path: true)
+      else
+        request.base_url + asset_url(optional.delete(:image).attachment)
+      end
     end
   end
 end
