@@ -1,4 +1,4 @@
-module SpreeAnalyticsTracker
+module SpreeAnalyticsTrackers
   module UserDecorator
     def analytics_id
       id
@@ -6,4 +6,4 @@ module SpreeAnalyticsTracker
   end
 end
 
-::Spree.user_class.prepend(::SpreeAnalyticsTracker::UserDecorator)
+::Spree.user_class.prepend(::SpreeAnalyticsTrackers::UserDecorator)
