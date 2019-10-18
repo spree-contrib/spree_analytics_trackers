@@ -1,0 +1,26 @@
+<% if order_just_completed?(@order) %>
+  <script>
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'purchase', {
+        "transaction_id": '<%= @order.number %>',
+        "value": '<%= @order.total %>',
+        "currency": '<%= @order.currency %>',
+        "tax": '<%= @order.tax_total %>',
+        "shipping": '<%= @order.shipment_total %>',
+        "items": [
+          <% @order.line_items.each do |line_item| %>
+            {
+              "id": '<%= line_item.sku %>',
+              "name": '<%= line_item.name %>',
+              "category": '<%= line_item.category&.name %>',
+              "variant": '<%= line_item.options_text %>',
+              "brand": '<%= line_item.brand&.name %>',
+              "quantity": '<%= line_item.quantity %>',
+              "price": '<%= line_item.price %>'
+            }
+          <% end %>
+        ]
+      });
+    }
+  </script>
+<% end %>
