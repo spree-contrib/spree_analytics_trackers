@@ -1,10 +1,11 @@
-<% if @variant %>
+<% if (@variant ||= Spree::Variant.find_by(id: params[:variant_id])) %>
+  <% variant_ga_values = line_item_for_ga(@variant) %>
   <script>
     if (typeof gtag !== 'undefined') {
       gtag(
         'event',
         'add_to_cart',
-        <%= line_item_for_ga(nil) %>
+        <%= variant_ga_values %>
       );
     }
   </script>

@@ -4,9 +4,9 @@ module Spree
       {
         product_id: product.id,
         sku: product.sku,
-        category: product.category.try(:name),
+        category: product.category&.name,
         name: product.name,
-        brand: product.brand.try(:name),
+        brand: product.brand&.name,
         price: product.price.to_f,
         currency: product.currency,
         url: product_url(product)
@@ -19,10 +19,9 @@ module Spree
       {
         id: variant.sku,
         name: variant.name,
-        category: variant.category&.name,
+        category: variant.product.category&.name,
         variant: variant.options_text,
-        brand: variant.brand&.name,
-        quantity: variant.quantity,
+        brand: variant.product&.brand&.name,
         price: variant.price
       }.to_json.html_safe
     end
