@@ -1,0 +1,11 @@
+<% if @variant %>
+  <script>
+    if (typeof gtag !== 'undefined') {
+      gtag(
+        'event',
+        'add_to_cart',
+        <%= line_item_for_ga(nil) %>
+      );
+    }
+  </script>
+<% end %>

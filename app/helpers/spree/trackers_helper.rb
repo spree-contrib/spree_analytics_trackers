@@ -15,6 +15,18 @@ module Spree
       end.merge(optional).to_json.html_safe
     end
 
+    def line_item_for_ga(variant)
+      {
+        id: variant.sku,
+        name: variant.name,
+        category: variant.category&.name,
+        variant: variant.options_text,
+        brand: variant.brand&.name,
+        quantity: variant.quantity,
+        price: variant.price
+      }.to_json.html_safe
+    end
+
     private
 
     # This method returns either asset_url (Paperclip) or rails_blob_path (ActiveStorage) to return the specified image(s)
