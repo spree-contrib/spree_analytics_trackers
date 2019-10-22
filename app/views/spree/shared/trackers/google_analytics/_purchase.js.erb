@@ -9,7 +9,7 @@
         "shipping": '<%= @order.shipment_total %>',
         "items": [
           <% @order.line_items.each do |line_item| %>
-            <%= line_item_for_ga(line_item.variant) %>
+            <%= ga_line_item(line_item.variant) %>
           <% end %>
         ]
       });

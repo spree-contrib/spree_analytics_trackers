@@ -1,5 +1,5 @@
 <% if (@variant ||= Spree::Variant.find_by(id: params[:variant_id])) %>
-  <% variant_ga_values = line_item_for_ga(@variant) %>
+  <% variant_ga_values = ga_line_item(@variant) %>
   <script>
     if (typeof gtag !== 'undefined') {
       gtag(
