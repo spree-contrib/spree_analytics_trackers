@@ -4,6 +4,9 @@ module SpreeAnalyticsTrackers
       class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_javascripts
+        javascripts_path = 'vendor/assets/javascripts/spree/frontend/all.js'
+        return unless File.file?(javascripts_path)
+
         append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/add_to_cart_analytics\n"
       end
 
