@@ -2,14 +2,14 @@
   <script>
     if (typeof gtag !== 'undefined') {
       gtag('event', 'purchase', {
-        "transaction_id": '<%= @order.number %>',
-        "value": '<%= @order.total %>',
-        "currency": '<%= @order.currency %>',
-        "tax": '<%= @order.tax_total %>',
-        "shipping": '<%= @order.shipment_total %>',
-        "items": [
+        transaction_id: '<%= @order.number %>',
+        value: '<%= @order.total %>',
+        currency: '<%= @order.currency %>',
+        tax: '<%= @order.tax_total %>',
+        shipping: '<%= @order.shipment_total %>',
+        items: [
           <% @order.line_items.each do |line_item| %>
-            <%= ga_line_item(line_item.variant) %>
+            <%= ga_line_item(line_item) %>
           <% end %>
         ]
       });

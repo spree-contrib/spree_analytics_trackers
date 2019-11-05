@@ -15,13 +15,16 @@ module Spree
       end.merge(optional).to_json.html_safe
     end
 
-    def ga_line_item(variant)
+    def ga_line_item(line_item)
+      variant = line_item.variant
+
       {
         id: variant.sku,
         name: variant.name,
         category: variant.product.category&.name,
         variant: variant.options_text,
         brand: variant.product.brand&.name,
+        quantity: line_item.quantity,
         price: variant.price
       }.to_json.html_safe
     end
