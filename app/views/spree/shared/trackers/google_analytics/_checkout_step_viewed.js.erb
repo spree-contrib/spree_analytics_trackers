@@ -3,7 +3,7 @@
     gtag('event', 'checkout_progress', {
       items: [
         <% @order.line_items.each do |line_item| %>
-          <%= ga_line_item(line_item) %>
+          <%= ga_line_item(line_item) %>,
         <% end %>
       ],
 

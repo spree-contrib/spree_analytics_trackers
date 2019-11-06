@@ -1,11 +1,13 @@
 module SpreeAnalyticsTrackers
   module StoreControllerDecorator
-    def self.prepended(base)
-      base.helper Spree::TrackersHelper
+    def self.included(base)
+      base.include ::Spree::TrackersHelper
+
+      base.helper_method *::Spree::TrackersHelper.public_instance_methods
     end
   end
 end
 
 if defined?(Spree::StoreController)
-  ::Spree::StoreController.prepend(::SpreeAnalyticsTrackers::StoreControllerDecorator)
+  ::Spree::StoreController.include(::SpreeAnalyticsTrackers::StoreControllerDecorator)
 end
