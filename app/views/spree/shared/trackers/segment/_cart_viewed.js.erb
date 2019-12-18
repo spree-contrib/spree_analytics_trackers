@@ -4,7 +4,7 @@
       cart_id: '<%= @order.number %>',
       products: [
       <% @order.line_items.each_with_index do |line_item, index| %>
-        <%= product_for_segment(line_item, position: index+1, quantity: line_item.quantity) %>,
+        <%= product_for_segment(line_item, position: index+1, quantity: line_item.quantity, image: line_item.variant.images.first) %>,
       <% end %>
       ]
     });
@@ -13,7 +13,7 @@
       cart_id: '<%= @order.number %>',
       products: [
       <% @order.line_items.each_with_index do |line_item, index| %>
-        <%= product_for_segment(line_item, position: index+1, quantity: line_item.quantity) %>,
+        <%= product_for_segment(line_item, position: index+1, quantity: line_item.quantity, image: line_item.variant.images.first) %>,
       <% end %>
       ]
     });
