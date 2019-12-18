@@ -37,8 +37,10 @@ Spree.ready(function(){
 
     if (typeof gtag !== 'undefined') {
       gaAddToCart(variant, quantity)
-    } else if (typeof analytics !== 'undefined') {
-      segmentAddtoCart(variant, quantity)
+    }
+
+    if (typeof analytics !== 'undefined') {
+      segmentAddtoCart(variant, quantity, currency)
     }
   })
 });
