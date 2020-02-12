@@ -11,6 +11,7 @@ if Gem.loaded_specs['spree_core'].version >= Gem::Version.create('3.5.0.alpha')
     virtual_path: 'spree/layouts/checkout',
     name: 'add_google_analytics_to_spree_checkout',
     insert_top: "[data-hook='body']",
-    partial: 'spree/shared/trackers/google_analytics/initializer.js'
+    partial: 'spree/shared/trackers/google_analytics/initializer.js',
+    original: 'ca3d46a134b93856baf937cf2e473da66d9d8efc'
   )
 end
