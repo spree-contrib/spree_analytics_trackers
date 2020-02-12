@@ -1,18 +1,20 @@
 <script>
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'checkout_progress', {
-      items: [
-        <% @order.line_items.each do |line_item| %>
-          <%= ga_line_item(line_item) %>,
-        <% end %>
-      ],
+  window.addEventListener('turbolinks:load', function() {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'checkout_progress', {
+        items: [
+          <% @order.line_items.each do |line_item| %>
+            <%= ga_line_item(line_item) %>,
+          <% end %>
+        ],
 
-      coupon: '<%= @order.promo_code %>',
-    });
+        coupon: '<%= @order.promo_code %>',
+      });
 
-    gtag('event', 'set_checkout_option', {
-      'checkout_step': '<%= (@order.checkout_steps.index(@order.state) + 1) %>',
-      'checkout_option': '<%= @order.state %>'
-    });
-  };
+      gtag('event', 'set_checkout_option', {
+        'checkout_step': '<%= (@order.checkout_steps.index(@order.state) + 1) %>',
+        'checkout_option': '<%= @order.state %>'
+      });
+    };
+  })
 </script>
