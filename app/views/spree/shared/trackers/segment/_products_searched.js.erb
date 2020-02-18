@@ -1,14 +1,12 @@
 <% if params.key?(:keywords) %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
-      if (typeof analytics !== 'undefined') {
-        analytics.track('Products Searched', {
-          query: '<%= params[:keywords] %>',
-        });
-        analytics.page('Products Searched', {
-          query: '<%= params[:keywords] %>',
-        });
-      }
-    })
+    if (typeof analytics !== 'undefined') {
+      analytics.track('Products Searched', {
+        query: '<%= params[:keywords] %>',
+      });
+      analytics.page('Products Searched', {
+        query: '<%= params[:keywords] %>',
+      });
+    }
   </script>
 <% end %>
