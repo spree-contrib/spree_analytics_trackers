@@ -1,12 +1,14 @@
-<script>
-  if (typeof analytics !== 'undefined') {
-    analytics.track('Checkout Step Viewed', {
-      checkout_id: '<%= @order.number %>',
-      step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
-    });
-    analytics.page('Checkout Step Viewed', {
-      checkout_id: '<%= @order.number %>',
-      step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
-    });
-  }
-</script>
+<% if @order.present? && !@order.completed? %>
+  <script>
+    if (typeof analytics !== 'undefined') {
+      analytics.track('Checkout Step Viewed', {
+        checkout_id: '<%= @order.number %>',
+        step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
+      });
+      analytics.page('Checkout Step Viewed', {
+        checkout_id: '<%= @order.number %>',
+        step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
+      });
+    }
+  </script>
+<% end %>  

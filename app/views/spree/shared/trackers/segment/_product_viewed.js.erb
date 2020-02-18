@@ -1,6 +1,6 @@
 <script>
   if (typeof analytics !== 'undefined') {
-    analytics.page('Product Viewed', <%= product_for_segment(@product, image: @product.images.first) %>);
-    analytics.track('Product Viewed', <%= product_for_segment(@product, image: @product.images.first) %>);
+    analytics.page('Product Viewed', <%= product_for_segment(@product, image: default_image_for_product_or_variant(@product)) %>);
+    analytics.track('Product Viewed', <%= product_for_segment(@product, image: default_image_for_product_or_variant(@product)) %>);
   }
 </script>
