@@ -1,0 +1,12 @@
+<% if tracker = Spree::Tracker.current(:google_analytics) %>
+  <script>
+    console.log('page view tracked')
+    <% if user_id = try_spree_current_user.try(:id) %>
+      gtag('config', '<%= tracker.analytics_id %>', {
+        'user_id': '<%= user_id %>'
+      });
+    <% else %>
+      gtag('config', '<%= tracker.analytics_id %>');
+    <% end %>
+  </script>
+<% end %>
