@@ -1,8 +1,6 @@
 <script>
-  window.addEventListener('turbolinks:load', function() {
-    if (typeof analytics !== 'undefined') {
-      analytics.track('Product Viewed', <%= product_for_segment(@product, image: @product.images.first) %>);
-      analytics.page('Product Viewed', <%= product_for_segment(@product, image: @product.images.first) %>);
-    }
-  })
+  if (typeof analytics !== 'undefined') {
+    analytics.page('Product Viewed', <%= product_for_segment(@product, image: @product.images.first) %>);
+    analytics.track('Product Viewed', <%= product_for_segment(@product, image: @product.images.first) %>);
+  }
 </script>
