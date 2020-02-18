@@ -4,7 +4,7 @@
       category: '<%= @taxon.try(:name) %>',
       products: [
       <% products.each_with_index do |product, index| %>
-        <%= product_for_segment(product, position: index+1, image: product.images.first) %>,
+        <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
       <% end %>
       ]
     });
@@ -13,7 +13,7 @@
       category: '<%= @taxon.try(:name) %>',
       products: [
       <% products.each_with_index do |product, index| %>
-        <%= product_for_segment(product, position: index+1, image: product.images.first) %>,
+        <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
       <% end %>
       ]
     });
