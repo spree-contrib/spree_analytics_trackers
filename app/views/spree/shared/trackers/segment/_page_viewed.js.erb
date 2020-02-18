@@ -1,0 +1,7 @@
+<% if tracker = Spree::Tracker.current(:segment) %>
+  <script>
+    if (typeof analytics !== 'undefined') {
+      analytics.page();
+    }
+  </script>
+<% end %>
