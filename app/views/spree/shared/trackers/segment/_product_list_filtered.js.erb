@@ -1,7 +1,7 @@
-<% if params[:search].present? %>
+<% if params[:search].present? && Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Product List Filtered', {
+      var segmentProductListFilteredJson = {
         filters: [
           <% params[:search].to_unsafe_h.each do |type, value| %>
             <%= { type: type, value: value } .to_json.html_safe %>,
@@ -9,23 +9,13 @@
         ],
         products: [
         <% @products.each_with_index do |product, index| %>
-          <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
+          <%= product_for_segment(product, position: index+1) %>,
         <% end %>
         ]
-      });
+      }
 
-      analytics.page('Product List Filtered', {
-        filters: [
-          <% params[:search].to_unsafe_h.each do |type, value| %>
-            <%= { type: type, value: value } .to_json.html_safe %>,
-          <% end %>
-        ],
-        products: [
-        <% @products.each_with_index do |product, index| %>
-          <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
-        <% end %>
-        ]
-      });
+      analytics.track('Product List Filtered', segmentProductListJson);
+      analytics.page('Product List Filtered', segmentProductListJson);
     }
   </script>
 <% end %>
