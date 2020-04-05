@@ -1,4 +1,4 @@
-<% if order_just_completed?(@order) %>
+<% if @order.present? && order_just_completed?(@order) && Spree::Tracker.current(:google_analytics) %>
   <script>
     if (typeof gtag !== 'undefined') {
       gtag('event', 'purchase', {

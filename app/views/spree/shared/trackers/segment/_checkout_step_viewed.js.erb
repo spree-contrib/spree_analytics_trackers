@@ -1,4 +1,4 @@
-<% if @order.present? && !@order.completed? %>
+<% if @order.present? && !@order.completed? && Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
       analytics.track('Checkout Step Viewed', {

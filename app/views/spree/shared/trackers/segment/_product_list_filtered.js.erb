@@ -1,4 +1,4 @@
-<% if params[:search].present? %>
+<% if params[:search].present? && Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
       analytics.track('Product List Filtered', {

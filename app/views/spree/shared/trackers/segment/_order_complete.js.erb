@@ -1,4 +1,4 @@
-<% if order_just_completed?(@order) %>
+<% if @order.present? && order_just_completed?(@order) && Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
       analytics.track('Order Completed', {
