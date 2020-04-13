@@ -11,7 +11,7 @@
     });
 
     gtag('event', 'set_checkout_option', {
-      'checkout_step': '<%= (@order.checkout_steps.index(@order.state) + 1) %>',
+      'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
       'checkout_option': '<%= @order.state %>'
     });
   };
