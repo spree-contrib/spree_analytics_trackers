@@ -7,6 +7,7 @@
         currency: '<%= @order.currency %>',
         tax: '<%= @order.tax_total %>',
         shipping: '<%= @order.shipment_total %>',
+        coupon: '<%= @order.promo_code %>',
         items: [
           <% @order.line_items.each do |line_item| %>
             <%= ga_line_item(line_item) %>,
