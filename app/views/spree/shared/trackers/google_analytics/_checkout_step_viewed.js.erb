@@ -1,6 +1,7 @@
 <script>
   if (typeof gtag !== 'undefined') {
     gtag('event', 'checkout_progress', {
+      checkout_step: <%= (@order.checkout_steps.index(@order.state) + 1) %>,
       items: [
         <% @order.line_items.each do |line_item| %>
           <%= ga_line_item(line_item) %>,
@@ -8,11 +9,6 @@
       ],
 
       coupon: '<%= @order.promo_code %>',
-    });
-
-    gtag('event', 'set_checkout_option', {
-      'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
-      'checkout_option': '<%= @order.state %>'
     });
   };
 </script>
