@@ -1,0 +1,19 @@
+zh-TW:
+  activerecord:
+    attributes:
+      spree/tracker:
+        one: 追蹤器
+        other: 追蹤器
+  spree:
+    analytics_engine: 分析引擎
+    analytics_trackers: 分析追蹤器
+    new_tracker: 新增追蹤器
+    google_analytics: Google 分析
+    google_analytics_id: Google 追蹤器代碼
+    analytics_desc_header_1: Spree 分析
+    analytics_desc_header_2: 新增即時分析到 Spree 的後台
+    analytics_desc_list_1: 獲得即時銷售數據
+    analytics_desc_list_2: 免費安裝
+    analytics_desc_list_3: 不需要寫任何代碼安裝
+    analytics_desc_list_4: 完全免費！
+
