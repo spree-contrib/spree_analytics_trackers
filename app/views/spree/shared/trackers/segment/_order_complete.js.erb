@@ -1,47 +1,9 @@
 <% if @order.present? && order_just_completed?(@order) && Spree::Tracker.current(:segment) %>
+  <% order_json = SpreeAnalyticsTrackers::Segment::OrderPresenter.call(@order).to_json %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Order Completed', {
-        order_id: '<%= @order.number %>',
-        total: <%= @order.total %>,
-        shipping: <%= @order.shipment_total %>,
-        tax: <%= @order.additional_tax_total %>,
-        discount: <%= @order.promo_total %>,
-        coupon: '<%= @order.promo_code %>',
-        currency: '<%= @order.currency %>',
-        products: [
-        <% @order.line_items.each do |line_item| %>
-          {
-            product_id: '<%= line_item.product_id %>',
-            sku: '<%= line_item.sku %>',
-            name: '<%= line_item.name %>',
-            price: <%= line_item.price %>,
-            quantity: <%= line_item.quantity %>
-          },
-        <% end %>
-        ]
-      });
-
-      analytics.page('Order Completed', {
-        order_id: '<%= @order.number %>',
-        total: <%= @order.total %>,
-        shipping: <%= @order.shipment_total %>,
-        tax: <%= @order.additional_tax_total %>,
-        discount: <%= @order.promo_total %>,
-        coupon: '<%= @order.promo_code %>',
-        currency: '<%= @order.currency %>',
-        products: [
-        <% @order.line_items.each do |line_item| %>
-          {
-            product_id: '<%= line_item.product_id %>',
-            sku: '<%= line_item.sku %>',
-            name: '<%= line_item.name %>',
-            price: <%= line_item.price %>,
-            quantity: <%= line_item.quantity %>
-          },
-        <% end %>
-        ]
-      });
+      analytics.track('Order Completed', <%= order_json %>);
+      analytics.page('Order Completed', <%= order_json %>);
     }
   </script>
 <% end %>

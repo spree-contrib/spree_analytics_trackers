@@ -6,6 +6,7 @@ This extensions adds support for [Google Analytics Enhanced Ecommerce](https://d
 and [Segment Ecommerce](https://segment.com/docs/spec/ecommerce/v2/) tracking to [Spree Commerce](https://spreecommerce.org) stores.
 
 Via Segment.com you can plug-in also a lot of additional vendors and services like:
+
 * Mixpanel
 * Kissmetrics
 * Google Tag Manager
@@ -18,16 +19,19 @@ No additional development required.
 ## Installation
 
 1. Add this extension to your Gemfile with this line:
+
   ```ruby
-  gem 'spree_analytics_trackers', '~> 1.1'
+  gem 'spree_analytics_trackers', '~> 2.0.0.rc1'
   ```
 
 2. Install the gem using Bundler:
+
   ```ruby
   bundle install
   ```
 
 3. Copy & run migrations
+
   ```ruby
   bundle exec rails g spree_analytics_trackers:install
   ```
@@ -52,10 +56,9 @@ Simply add this require statement to your spec_helper:
 require 'spree_analytics_trackers/factories'
 ```
 
-
 ## License
 
-Spree Analytics Trackers is copyright © 2017-2018
+Spree Analytics Trackers is copyright © 2017-2020
 [Spark Solutions Sp. z o.o.][spark]. It is free software,
 and may be redistributed under the terms specified in the
 [LICENCE](LICENSE) file.
@@ -63,6 +66,7 @@ and may be redistributed under the terms specified in the
 [LICENSE]: https://github.com/spree-contrib/spree_analytics_trackers/blob/master/LICENSE
 
 ## About Spark Solutions
+
 [![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
 
 Spree Analytics Trackers is maintained by [Spark Solutions Sp. z o.o.](http://sparksolutions.co?utm_source=github).

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = SpreeAnalyticsTrackers.version
   s.summary     = 'Adds analytics trackers functionality to Spree'
   s.description = 'Supports Google Analytics '
-  s.required_ruby_version = '>= 2.2.7'
+  s.required_ruby_version = '>= 2.5.0'
 
   s.author    = 'Spark Solutions'
   s.email     = 'we@sparksolutions.co'
@@ -21,25 +21,9 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  spree_version = '>= 4.1.0.rc3', '< 5.0'
-  s.add_dependency 'spree_core', spree_version
-  s.add_dependency 'spree_backend', spree_version
+  spree_version = '>= 4.1.0', '< 5.0'
+  s.add_dependency 'spree', spree_version
   s.add_dependency 'spree_extension'
-  s.add_dependency 'deface', '~> 1.0'
 
-  s.add_development_dependency 'appraisal'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'chromedriver-helper'
-  s.add_development_dependency 'coffee-rails'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'factory_bot', '~> 4.7'
-  s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'mysql2'
-  s.add_development_dependency 'pg'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'sass-rails'
-  s.add_development_dependency 'selenium-webdriver'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'spree_dev_tools'
 end

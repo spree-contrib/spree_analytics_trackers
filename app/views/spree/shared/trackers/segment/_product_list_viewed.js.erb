@@ -1,23 +1,17 @@
 <% if defined?(products) && products.present? && Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Product List Viewed', {
-        category: '<%= @taxon.try(:name) %>',
+      var segmentProductListViewedJson = {
+        category: '<%= @taxon&.name) %>',
         products: [
         <% products.each_with_index do |product, index| %>
           <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
         <% end %>
         ]
-      });
+      }
 
-      analytics.page('Product List Viewed', {
-        category: '<%= @taxon.try(:name) %>',
-        products: [
-        <% products.each_with_index do |product, index| %>
-          <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
-        <% end %>
-        ]
-      });
+      analytics.track('Product List Viewed', segmentProductListViewedJson);
+      analytics.page('Product List Viewed', segmentProductListViewedJson);
     }
   </script>
 <% end %>

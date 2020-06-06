@@ -1,6 +1,6 @@
 appraise 'spree-4-1' do
-  gem 'spree', '~> 4.1.0.rc2'
-  gem 'spree_auth_devise', '~> 4.1.0.rc1'
+  gem 'spree', '~> 4.1.0'
+  gem 'spree_auth_devise', '~> 4.1.0'
   gem 'rails-controller-testing'
 end
 
