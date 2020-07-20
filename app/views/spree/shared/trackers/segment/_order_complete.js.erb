@@ -2,8 +2,7 @@
   <% order_json = SpreeAnalyticsTrackers::Segment::OrderPresenter.new(@order).to_json %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Order Completed', <%= order_json %>);
-      analytics.page('Order Completed', <%= order_json %>);
+      analytics.page('Order Completed', <%= order_json.html_safe %>);
     }
   </script>
 <% end %>
