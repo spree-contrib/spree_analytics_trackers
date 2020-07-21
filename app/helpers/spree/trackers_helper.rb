@@ -1,46 +1,70 @@
 module Spree
   module TrackersHelper
     def product_for_segment(product, optional = {})
-      {
-        product_id: product.id,
-        sku: product.sku,
-        category: product.category&.name,
-        name: product.name,
-        brand: product.brand&.name,
-        price: product.price.to_f,
-        currency: product.currency,
-        url: product_url(product)
-      }.tap do |hash|
-        hash[:image_url] = product_for_segment_image_url(hash, optional)
+      cache_key = [
+        'spree-segment-product',
+        I18n.locale,
+        current_currency,
+        product.cache_key_with_version
+      ].compact.join('/')
+
+      product_hash = Rails.cache.fetch(cache_key) do
+        {
+          product_id: product.id,
+          sku: product.sku,
+          category: product.category&.name,
+          name: product.name,
+          brand: product.brand&.name,
+          price: product.price_in(current_currency).amount&.to_f,
+          currency: current_currency,
+          url: spree.product_url(product)
+        }
+      end
+
+      product_hash.tap do |hash|
+        hash[:image_url] = default_image_for_product_or_variant(product)
       end.merge(optional).to_json.html_safe
     end
 
     def ga_line_item(line_item)
       variant = line_item.variant
 
-      {
-        id: variant.sku,
-        name: variant.name,
-        category: variant.product.category&.name,
-        variant: variant.options_text,
-        brand: variant.product.brand&.name,
-        quantity: line_item.quantity,
-        price: variant.price
-      }.to_json.html_safe
+      cache_key = [
+        'spree-ga-line-item',
+        I18n.locale,
+        current_currency,
+        line_item.cache_key_with_version,
+        variant.cache_key_with_version
+      ].compact.join('/')
+
+      Rails.cache.fetch(cache_key) do
+        product = line_item.product
+        {
+          id: variant.sku,
+          name: variant.name,
+          category: product.category&.name,
+          variant: variant.options_text,
+          brand: product.brand&.name,
+          quantity: line_item.quantity,
+          price: variant.price_in(current_currency).amount&.to_f
+        }.to_json.html_safe
+      end
     end
 
-    private
+    def filtering_param_present?(param)
+      params.key?(param) && params.fetch(param).present?
+    end
 
-    # This method returns either asset_url (Paperclip) or rails_blob_path (ActiveStorage) to return the specified image(s)
-    def product_for_segment_image_url(hash, optional)
-      return unless optional[:image]
+    def any_filtering_params?
+      filtering_params.any? { |p| filtering_param_present?(p) }
+    end
 
-      # Spree 4.0 dropped Paperclip support
-      if Gem.loaded_specs['spree_core'].version >= Gem::Version.create('4.0.0.alpha') || (defined?(ActiveStorage) && !Rails.application.config.use_paperclip)
-        request.base_url + Rails.application.routes.url_helpers.rails_blob_path(optional.delete(:image).attachment, only_path: true)
-      else
-        request.base_url + asset_url(optional.delete(:image).attachment)
+    def filtering_params_with_values
+      params_with_values = {}
+      filtering_params.each do |param|
+        params_with_values[param] = params.fetch(param) if filtering_param_present?(param)
       end
+      params_with_values
     end
   end
 end

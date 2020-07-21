@@ -1,4 +1,3 @@
-  
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
@@ -11,3 +10,9 @@ require 'spree_dev_tools/rspec/spec_helper'
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].sort.each { |f| require f }
 
 require 'spree_analytics_trackers/factories'
+
+require 'spree/testing_support/image_helpers'
+
+RSpec.configure do |config|
+  config.include Spree::TestingSupport::ImageHelpers
+end

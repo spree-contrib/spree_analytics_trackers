@@ -6,12 +6,6 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    <% if user_id = try_spree_current_user.try(:id) %>
-      gtag('config', '<%= tracker.analytics_id %>', {
-        'user_id': '<%= user_id %>'
-      });
-    <% else %>
-      gtag('config', '<%= tracker.analytics_id %>');
-    <% end %>
+    gtag('config', '<%= tracker.analytics_id %>', { 'send_page_view': false });
   </script>
 <% end %>
