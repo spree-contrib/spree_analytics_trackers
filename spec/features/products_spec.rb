@@ -70,7 +70,12 @@ describe 'Visiting Products', type: :feature, js: true do
   it 'is able to search for a product' do
     find('.search-icons').click
     fill_in 'keywords', with: 'shirt'
-    first('button[type=submit]').click
+
+    if Spree.version.to_f > 4.1
+      first('button[type=submit]').click
+    else
+      find('#search-dropdown label').click
+    end
 
     expect(page).to have_css('.product-component-name').once
   end
@@ -195,17 +200,20 @@ describe 'Visiting Products', type: :feature, js: true do
     let(:variant3) { create(:variant, product: product, option_values: [option_value3], price: '89.99') }
 
     before do
-      price1 = Spree::Price.find_by(variant: variant1)
-      price2 = Spree::Price.find_by(variant: variant2)
-      price3 = Spree::Price.find_by(variant: variant3)
-      price1.update(compare_at_amount: '149.99')
-      price2.update(compare_at_amount: '169.99')
-      price3.update(compare_at_amount: '79.99')
-      price1.save
-      price2.save
-      price3.save
+      if Spree.version.to_f > 4.1
+        price1 = Spree::Price.find_by(variant: variant1)
+        price2 = Spree::Price.find_by(variant: variant2)
+        price3 = Spree::Price.find_by(variant: variant3)
+        price1.update(compare_at_amount: '149.99')
+        price2.update(compare_at_amount: '169.99')
+        price3.update(compare_at_amount: '79.99')
+        price1.save
+        price2.save
+        price3.save
 
-      product.master.prices.first.update(compare_at_amount: 29.99)
+        product.master.prices.first.update(compare_at_amount: 29.99)
+      end
+
       product.master.stock_items.update_all count_on_hand: 10, backorderable: true
       product.option_types << option_type
       product.variants << [variant1, variant2, variant3]
@@ -219,8 +227,10 @@ describe 'Visiting Products', type: :feature, js: true do
     end
 
     it 'shows both pre sales and current prices on PDP' do
-      expect(page).to have_content('$49.99')
-      expect(page).to have_content('$149.99')
+      if Spree.version.to_f > 4.1
+        expect(page).to have_content('$49.99')
+        expect(page).to have_content('$149.99')
+      end
     end
 
     it 'shows prices for other variants' do
@@ -229,16 +239,21 @@ describe 'Visiting Products', type: :feature, js: true do
       end
 
       expect(page).to have_content('$69.99')
-      expect(page).to have_content('$169.99')
+
+      if Spree.version.to_f > 4.1
+        expect(page).to have_content('$169.99')
+      end
     end
 
     it 'does not show pre sales price when it is bigger than price' do
-      within('.product-variants-variant-values') do
-        find('li', text: 'L').click
-      end
+      if Spree.version.to_f > 4.1
+        within('.product-variants-variant-values') do
+          find('li', text: 'L').click
+        end
 
-      expect(page).to have_content('$89.99')
-      expect(page).not_to have_content('$79.99')
+        expect(page).to have_content('$89.99')
+        expect(page).not_to have_content('$79.99')
+      end
     end
   end
 
