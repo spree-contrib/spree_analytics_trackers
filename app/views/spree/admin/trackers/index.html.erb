@@ -12,6 +12,7 @@
       <tr data-hook="admin_trackers_index_headers">
         <th><%= Spree.t(:google_analytics_id) %></th>
         <th><%= Spree.t(:analytics_engine) %></th>
+        <th><%= Spree.t(:store) %></th>
         <th class="text-center"><%= Spree.t(:active) %></th>
         <th class="actions"></th>
       </tr>
@@ -21,6 +22,7 @@
         <tr id="<%= spree_dom_id tracker %>" data-hook="admin_trackers_index_rows">
           <td><%= tracker.analytics_id %></td>
           <td><%= tracker.engine.humanize %></td>
+          <td><%= tracker.store&.name %></td>
           <td class="text-center">
             <%= tracker.active ? Spree.t(:say_yes) : Spree.t(:say_no) %>
           </td>
