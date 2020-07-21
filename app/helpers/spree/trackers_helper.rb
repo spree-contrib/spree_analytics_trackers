@@ -50,5 +50,21 @@ module Spree
         }.to_json.html_safe
       end
     end
+
+    def filtering_param_present?(param)
+      params.key?(param) && params.fetch(param).present?
+    end
+
+    def any_filtering_params?
+      filtering_params.any? { |p| filtering_param_present?(p) }
+    end
+
+    def filtering_params_with_values
+      params_with_values = {}
+      filtering_params.each do |param|
+        params_with_values[param] = params.fetch(param) if filtering_param_present?(param)
+      end
+      params_with_values
+    end
   end
 end

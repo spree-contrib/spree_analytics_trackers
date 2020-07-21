@@ -1,9 +1,9 @@
-<% if params[:search].present? && Spree::Tracker.current(:segment) %>
+<% if any_filtering_params? && Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
       var segmentProductListFilteredJson = {
         filters: [
-          <% params[:search].to_unsafe_h.each do |type, value| %>
+          <% filtering_params_with_values.each do |type, value| %>
             <%= { type: type, value: value } .to_json.html_safe %>,
           <% end %>
         ],
@@ -14,8 +14,8 @@
         ]
       }
 
-      analytics.track('Product List Filtered', segmentProductListJson);
-      analytics.page('Product List Filtered', segmentProductListJson);
+      analytics.track('Product List Filtered', segmentProductListFilteredJson);
+      analytics.page('Product List Filtered', segmentProductListFilteredJson);
     }
   </script>
 <% end %>
