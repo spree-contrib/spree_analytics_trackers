@@ -1,4 +1,4 @@
-<% if any_filtering_params? && Spree::Tracker.current(:segment) %>
+<% if any_filtering_params? && Spree::Tracker.current(:segment, current_store) %>
   <script>
     if (typeof analytics !== 'undefined') {
       var segmentProductListFilteredJson = {
