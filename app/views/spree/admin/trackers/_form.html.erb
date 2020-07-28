@@ -30,9 +30,11 @@
       <%= f.error_message_on :analytics_id %>
     <% end %>
   </div>
-  <div data-hook="store" class="form-group">
-    <%= label_tag :tracker_store, Spree.t(:store) %>
-    <%= collection_select(:tracker, :store_id, @stores, :id, :name, { include_blank: true }, {id: 'store_id', class: 'select2'}) %>
+  <div class="col-12 col-lg-6">
+    <div data-hook="store" class="form-group">
+      <%= label_tag :tracker_store, Spree.t(:store) %>
+      <%= collection_select(:tracker, :store_id, @stores, :id, :name, { include_blank: true }, {id: 'store_id', class: 'select2'}) %>
+    </div>
   </div>
   <div class="col-12 col-lg-6" data-hook="additional_tracker_fields"></div>
 </div>
