@@ -1,4 +1,4 @@
-<% if tracker = Spree::Tracker.current(:google_analytics) %>
+<% if tracker = Spree::Tracker.current(:google_analytics, current_store) %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<%= tracker.analytics_id %>"></script>
   <script>

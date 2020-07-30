@@ -1,4 +1,4 @@
-<% if defined?(products) && products.present? && Spree::Tracker.current(:segment) %>
+<% if defined?(products) && products.present? && Spree::Tracker.current(:segment, current_store) %>
   <script>
     if (typeof analytics !== 'undefined') {
       var segmentProductListViewedJson = {

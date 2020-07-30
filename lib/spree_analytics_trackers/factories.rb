@@ -4,6 +4,7 @@ unless FactoryBot.factories.registered?(:tracker)
       analytics_id { 'A100' }
       active { true }
       engine { :google_analytics }
+      store { Spree::Store.default || create(:store) }
     end
   end
 end
