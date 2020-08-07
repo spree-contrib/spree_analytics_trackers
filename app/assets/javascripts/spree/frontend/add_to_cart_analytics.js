@@ -1,17 +1,5 @@
 //= require spree/frontend
 
-function clearGAplugins() {
-  if (ga !== undefined) {
-    var trackingDom = ga.getAll()[0].get('trackingId');
-    if (trackingDom !== undefined) {
-      var trackingId = trackingDom.split('-').join('_')
-      if (trackingId !== undefined) {
-        delete ga.o["gtag_" + trackingId].plugins_
-      }
-    }
-  }
-}
-
 function gaAddToCart(variant, quantity) {
   clearGAplugins();
   gtag(
