@@ -6,13 +6,15 @@ function gaAddToCart(variant, quantity) {
     'event',
     'add_to_cart',
     {
-      id: variant.sku,
-      name: variant.name,
-      category: variant.category,
-      variant: variant.options_text,
-      brand: variant.brand,
-      price: variant.price,
-      quantity: quantity
+      items: [{
+        id: variant.sku,
+        name: variant.name,
+        category: variant.category,
+        variant: variant.options_text,
+        brand: variant.brand,
+        price: variant.price.amount,
+        quantity: quantity
+      }]
     }
   );
 }
