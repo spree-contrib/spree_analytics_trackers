@@ -2,6 +2,7 @@
 
 function gaAddToCart(variant, quantity) {
   clearGAplugins();
+  var price = typeof variant.price === 'object' ? variant.price.amount : variant.price
   gtag(
     'event',
     'add_to_cart',
@@ -12,7 +13,7 @@ function gaAddToCart(variant, quantity) {
         category: variant.category,
         variant: variant.options_text,
         brand: variant.brand,
-        price: variant.price.amount,
+        price: price,
         quantity: quantity
       }]
     }
