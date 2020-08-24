@@ -2,17 +2,20 @@
 
 function gaAddToCart(variant, quantity) {
   clearGAplugins();
+  var price = typeof variant.price === 'object' ? variant.price.amount : variant.price
   gtag(
     'event',
     'add_to_cart',
     {
-      id: variant.sku,
-      name: variant.name,
-      category: variant.category,
-      variant: variant.options_text,
-      brand: variant.brand,
-      price: variant.price,
-      quantity: quantity
+      items: [{
+        id: variant.sku,
+        name: variant.name,
+        category: variant.category,
+        variant: variant.options_text,
+        brand: variant.brand,
+        price: price,
+        quantity: quantity
+      }]
     }
   );
 }

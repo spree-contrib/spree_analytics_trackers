@@ -9,11 +9,11 @@
     gtag('config', '<%= tracker.analytics_id %>', { 'send_page_view': false });
 
     function clearGAplugins() {
-      if (ga !== undefined && typeof ga.getAll === "function") {
+      if (typeof ga !== "undefined" && typeof ga.getAll === "function") {
         var trackingDom = ga.getAll()[0].get('trackingId');
         if (trackingDom !== undefined) {
           var trackingId = trackingDom.split('-').join('_')
-          if (trackingId !== undefined) {
+          if (trackingId !== undefined && ga.o !== undefined && ga.o["gtag_" + trackingId] !== undefined) {
             delete ga.o["gtag_" + trackingId].plugins_
           }
         }
