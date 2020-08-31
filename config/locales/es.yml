@@ -10,7 +10,7 @@ es:
     new_tracker: New Tracker
     google_analytics: Google Analytics
     google_analytics_id: Analytics ID
-    google_second_analytics_id: Google Ads ID
+    second_analytics_id: Código secundario
     google_purchase_id: Google Ads Tracker ID
     analytics_desc_header_1: Spree Analytics
     analytics_desc_header_2: Live analytics integrated into your Spree dashboard

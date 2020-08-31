@@ -9,6 +9,11 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '<%= tracker.analytics_id %>');
+
+    <% if tracker.second_analytics_id.present? %>
+      fbq('init', '<%= tracker.second_analytics_id %>');
+    <% end %>
+
     fbq('track', 'PageView');
   <% end %>
 <% end %>
