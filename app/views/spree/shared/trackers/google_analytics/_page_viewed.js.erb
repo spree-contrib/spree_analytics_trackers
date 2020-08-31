@@ -8,6 +8,10 @@
       <% else %>
         gtag('config', '<%= tracker.analytics_id %>');
       <% end %>
+
+      <% if tracker.second_analytics_id.present? %>
+        gtag('config', '<%= tracker.second_analytics_id %>');
+      <% end %>
     }
   </script>
 <% end %>

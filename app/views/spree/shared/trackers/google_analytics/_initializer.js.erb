@@ -7,6 +7,10 @@
     gtag('js', new Date());
 
     gtag('config', '<%= tracker.analytics_id %>', { 'send_page_view': false });
+    
+    <% if tracker.second_analytics_id.present? %>
+      gtag('config', '<%= tracker.second_analytics_id %>', { 'send_page_view': false });
+    <% end %>
 
     function clearGAplugins() {
       if (typeof ga !== "undefined" && typeof ga.getAll === "function") {
