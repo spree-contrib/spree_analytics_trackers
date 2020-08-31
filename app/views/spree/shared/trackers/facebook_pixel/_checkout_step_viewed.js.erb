@@ -1,0 +1,17 @@
+<% if @order.present? && !@order.completed? && Spree::Tracker.current(:facebook_pixel, current_store) %>
+  <% if @order.state == 'address' %>
+    <%= javascript_tag do %>
+      setTimeout(function () {
+        fbq('track', 'InitiateCheckout', {
+          value: '<%= @order.total&.to_f %>',
+          currency: '<%= @order.currency %>',
+          content_ids: [
+            <% @order.line_items.each do |line_item| %>
+              '<%= line_item.variant.sku %>',
+            <% end %>
+          ]
+        });
+      }, 0);
+    <% end %>
+  <% end %>
+<% end %>

@@ -26,6 +26,26 @@ module Spree
       end.merge(optional).to_json.html_safe
     end
 
+    def product_for_fb(product, optional = {})
+      cache_key = [
+        'spree-fb-product',
+        I18n.locale,
+        current_currency,
+        product.cache_key_with_version
+      ].compact.join('/')
+
+      Rails.cache.fetch(cache_key) do
+        {
+          content_ids: ["#{product.id}"],
+          content_category: product.category&.name,
+          content_name: product.name,
+          content_type: 'product',
+          value: product.price_in(current_currency).amount&.to_f,
+          currency: current_currency,
+        }.to_json.html_safe
+      end
+    end
+
     def ga_line_item(line_item)
       variant = line_item.variant
 
@@ -47,6 +67,25 @@ module Spree
           brand: product.brand&.name,
           quantity: line_item.quantity,
           price: variant.price_in(current_currency).amount&.to_f
+        }.to_json.html_safe
+      end
+    end
+
+    def fb_line_item(line_item)
+      variant = line_item.variant
+
+      cache_key = [
+        'spree-fb-line-item',
+        I18n.locale,
+        current_currency,
+        line_item.cache_key_with_version,
+        variant.cache_key_with_version
+      ].compact.join('/')
+
+      Rails.cache.fetch(cache_key) do
+        {
+          id: variant.sku,
+          quantity: line_item.quantity,
         }.to_json.html_safe
       end
     end

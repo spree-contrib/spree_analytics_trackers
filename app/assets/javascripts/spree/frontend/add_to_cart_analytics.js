@@ -20,6 +20,18 @@ function gaAddToCart(variant, quantity) {
   );
 }
 
+function fbAddToCart(variant, currency) {
+  var price = typeof variant.price === 'object' ? variant.price.amount : variant.price
+  fbq('track', 'AddToCart', {
+    content_name: variant.name,
+    content_category: variant.category,
+    content_ids: [variant.id],
+    content_type: 'product',
+    value: price,
+    currency: currency
+  });
+}
+
 function segmentAddtoCart(variant, quantity, currency) {
   analytics.track('Product Added', {
     product_id: variant.id,
@@ -38,6 +50,10 @@ Spree.ready(function(){
     var variant = event.variant
     var quantity = event.quantity_increment
     var currency = event.cart.currency
+
+    if (typeof fbq !== 'undefined') {
+      fbAddToCart(variant, currency)
+    }
 
     if (typeof gtag !== 'undefined') {
       gaAddToCart(variant, quantity)

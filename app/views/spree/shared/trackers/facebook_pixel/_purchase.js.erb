@@ -1,0 +1,18 @@
+<% if @order.present? && order_just_completed?(@order) && Spree::Tracker.current(:facebook_pixel, current_store) %>
+  <%= javascript_tag do %>
+  fbq('track', 'Purchase',
+    // begin parameter object data
+    {
+      value: <%= @order.total&.to_f %>,
+      currency: '<%= @order.currency %>',
+      contents: [
+        <% @order.line_items.each do |line_item| %>
+          <%= fb_line_item(line_item) %>,
+        <% end %>
+      ],
+      content_type: 'product'
+    }
+    // end parameter object data
+  );
+  <% end %>
+<% end %>

@@ -15,4 +15,12 @@ unless spree_version >= Gem::Version.create('3.4.0') && spree_version < Gem::Ver
     partial: 'spree/shared/trackers/google_analytics/checkout_step_viewed.js',
     original: '0ac5c18a2db215bf8ba30470a0e5d69e00d0313a'
   )
+
+  Deface::Override.new(
+    virtual_path: 'spree/checkout/edit',
+    name: 'add_facebook_pixel_step_viewed_to_checkout_edit',
+    insert_after: '[data-hook="checkout_content"]',
+    partial: 'spree/shared/trackers/facebook_pixel/checkout_step_viewed.js',
+    original: '0ac5c18a2db215bf8ba3s470a0e5d69e00d0313a'
+  )
 end
