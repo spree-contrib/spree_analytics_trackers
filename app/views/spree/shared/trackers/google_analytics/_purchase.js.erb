@@ -4,12 +4,12 @@
       clearGAplugins();
       gtag('event', 'purchase', {
         transaction_id: '<%= @order.number %>',
-        value <%= @order.total&.to_f %>,
+        value: <%= @order.total&.to_f %>,
         currency: '<%= @order.currency %>',
-        tax <%= @order.tax_total&.to_f %>,
-        shipping <%= @order.shipment_total&.to_f %>,
+        tax: <%= @order.tax_total&.to_f %>,
+        shipping: <%= @order.shipment_total&.to_f %>,
         coupon: '<%= @order.promo_code %>',
-        items [
+        items: [
           <% @order.line_items.each do |line_item| %>
             <%= ga_line_item(line_item) %>,
           <% end %>
@@ -19,7 +19,7 @@
     <% if tracker.second_analytics_id.present? && tracker.purchase_id.present? %>
       gtag('event', 'conversion', {
         send_to: '<%= tracker.purchase_id %>',
-        value  <%= @order.total&.to_f %>,
+        value: <%= @order.total&.to_f %>,
         currency: '<%= @order.currency %>',
         transaction_id: '<%= @order.number %>'
       });
