@@ -21,7 +21,7 @@ No additional development required.
 1. Add this extension to your Gemfile with this line:
 
   ```ruby
-  gem 'spree_analytics_trackers', '~> 2.0.0.rc1'
+  gem 'spree_analytics_trackers', '~> 2.0'
   ```
 
 2. Install the gem using Bundler:
