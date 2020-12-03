@@ -1,22 +1,27 @@
 <% if @order.present? && !@order.complete? && Spree::Tracker.current(:segment, current_store) %>
   <script>
-    if (typeof analytics !== 'undefined') {
-      var segmentCartJson = {
-        cart_id: '<%= @order.number %>',
-        products: [
-        <% @order.line_items.each_with_index do |line_item, index| %>
-          <%= product_for_segment(
-            line_item.product, 
-            position: index+1, 
-            quantity: line_item.quantity, 
-            image: default_image_for_product_or_variant(line_item.variant)
-          ) %>,
-        <% end %>
-        ]
-      }
+    window.addEventListener('turbolinks:load', function() {
+      if (typeof analytics !== 'undefined') {
+        var segmentCartJson = {
+          cart_id: '<%= @order.number %>',
+          products: [
+            <% @order.line_items.each_with_index do |line_item, index| %>
+              <%=
+                product_for_segment(
+                  line_item.product,
+                  position: index+1,
+                  quantity: line_item.quantity,
+                  image: default_image_for_product_or_variant(line_item.variant)
+                )
+              %>,
+            <% end %>
+          ]
+        }
 
-      analytics.track('Cart Viewed', segmentCartJson);
-      analytics.page('Cart Viewed', segmentCartJson);
-    }
+        analytics.track('Cart Viewed', segmentCartJson);
+        analytics.page('Cart Viewed', segmentCartJson);
+      }
+    });
   </script>
 <% end %>
+
