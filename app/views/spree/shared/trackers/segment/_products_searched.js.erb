@@ -1,12 +1,10 @@
 <% if params.key?(:keywords) && params[:keywords].present? && Spree::Tracker.current(:segment, current_store) %>
   <script>
-    if (typeof analytics !== 'undefined') {
-      analytics.track('Products Searched', {
-        query: '<%= params[:keywords] %>',
-      });
-      analytics.page('Products Searched', {
-        query: '<%= params[:keywords] %>',
-      });
-    }
+    window.addEventListener('turbolinks:load', function() {
+      if (typeof analytics !== 'undefined') {
+        analytics.track('Products Searched', { query: '<%= params[:keywords] %>' });
+        analytics.page('Products Searched', { query: '<%= params[:keywords] %>' });
+      }
+    });
   </script>
 <% end %>
