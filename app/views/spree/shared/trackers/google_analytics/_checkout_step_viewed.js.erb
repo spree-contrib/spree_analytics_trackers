@@ -1,18 +1,19 @@
 <% if @order.present? && !@order.completed? && Spree::Tracker.current(:google_analytics, current_store) %>
   <script>
-    if (typeof gtag !== 'undefined') {
-      clearGAplugins();
-      gtag('event', 'checkout_progress', {
-        checkout_step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>',
-        items: [
-          <% @order.line_items.each do |line_item| %>
-            <%= ga_line_item(line_item) %>,
-          <% end %>
-        ],
-
-        coupon: '<%= @order.promo_code %>',
-        checkout_option: '<%= @order.state %>'
-      });
-    };
+    window.addEventListener('turbolinks:load', function() {
+      if (typeof gtag !== 'undefined') {
+        clearGAplugins();
+        gtag('event', 'checkout_progress', {
+          checkout_step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>',
+          items: [
+            <% @order.line_items.each do |line_item| %>
+              <%= ga_line_item(line_item) %>,
+            <% end %>
+          ],
+          coupon: '<%= @order.promo_code %>',
+          checkout_option: '<%= @order.state %>'
+        });
+      };
+    });
   </script>
 <% end %>
