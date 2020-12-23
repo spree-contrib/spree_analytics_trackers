@@ -1,0 +1,15 @@
+<script type="text/javascript" id="pap_x2s6df8d" src="https://adrenalinads.postaffiliatepro.com/scripts/aly5eggmej7"></script>
+<script type="text/javascript">
+  if (!!document.querySelector('#account-page')
+    && !!document.querySelector('.alert.alert-success span')
+    && document.querySelector('.alert.alert-success span').textContent === 'Bienvenido! Te has registrado satisfactoriamente.') {
+    const userMail = document.querySelector('#user_email_account').textContent;
+    const userLead = document.querySelector('#user_lead_account').textContent;
+    if (userLead === 'adrenalinads') {
+      PostAffTracker.setAccountId('default1');
+      var action = PostAffTracker.createAction('lead');
+      action.setOrderID(userMail);
+      PostAffTracker.register();
+    }
+  }
+</script>

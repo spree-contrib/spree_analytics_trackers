@@ -1,0 +1,17 @@
+<% if @order.present? && order_just_completed?(@order) && @order.user.lead == 'adrenalinads'%>
+  <script type="text/javascript" id="pap_x2s6df8d" src="https://adrenalinads.postaffiliatepro.com/scripts/aly5eggmej7"></script>
+  <script type="text/javascript">
+    PostAffTracker.setAccountId('default1');
+    var sale = PostAffTracker.createAction('lead');
+
+    sale.setTotalCost('<%= @order.total&.to_f %>');
+    sale.setOrderID('<%= @order.number %>');
+
+    <% @order.line_items.each do |line_item| %>
+      sale.setProductID('<%= line_item.variant.sku %>');
+    <% end %>
+
+    sale.setCampaignID('b0262d24');
+    PostAffTracker.register();
+  </script>
+<% end %>

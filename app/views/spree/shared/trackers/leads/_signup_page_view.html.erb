@@ -1,0 +1,15 @@
+<script type="text/javascript" id="pap_x2s6df8d" src="https://adrenalinads.postaffiliatepro.com/scripts/aly5eggmej7"></script>
+<script type="text/javascript">
+if (document.querySelector('#signup') !== null) {
+  const leadParams = new URLSearchParams(window.location.search).get('utm_source');
+  if (leadParams && leadParams === 'adrenalinads') {
+    document.getElementById('spree_user_lead').value = 'adrenalinads';
+    PostAffTracker.setAccountId('default1');
+    try {
+      PostAffTracker.track();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+</script>
