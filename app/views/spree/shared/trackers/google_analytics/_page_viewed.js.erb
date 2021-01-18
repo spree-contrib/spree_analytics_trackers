@@ -1,12 +1,12 @@
-<% if tracker = Spree::Tracker.current(:google_analytics, current_store) %>
+<% if ga_enabled? %>
   <script>
     if (typeof gtag !== 'undefined') {
       <% if user_id = try_spree_current_user.try(:id) %>
-        gtag('config', '<%= tracker.analytics_id %>', {
+        gtag('config', '<%= ga_tracker.analytics_id %>', {
           'user_id': '<%= user_id %>'
         });
       <% else %>
-        gtag('config', '<%= tracker.analytics_id %>');
+        gtag('config', '<%= ga_tracker.analytics_id %>');
       <% end %>
     }
   </script>

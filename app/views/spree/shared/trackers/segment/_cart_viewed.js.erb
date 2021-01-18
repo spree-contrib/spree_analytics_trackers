@@ -1,4 +1,4 @@
-<% if @order.present? && !@order.complete? && Spree::Tracker.current(:segment, current_store) %>
+<% if segment_enabled? && @order.present? && !@order.complete? %>
   <script>
     window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {

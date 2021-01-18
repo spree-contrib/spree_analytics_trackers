@@ -66,5 +66,21 @@ module Spree
       end
       params_with_values
     end
+
+    def segment_tracker
+      @segment_tracker ||= Spree::Tracker.current(:segment, current_store)
+    end
+
+    def segment_enabled?
+      segment_tracker.present?
+    end
+
+    def ga_tracker
+      @ga_tracker ||= Spree::Tracker.current(:google_analytics, current_store)
+    end
+
+    def ga_enabled?
+      ga_tracker.present?
+    end
   end
 end
