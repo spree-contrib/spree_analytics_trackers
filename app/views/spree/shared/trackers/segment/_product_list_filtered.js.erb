@@ -1,4 +1,4 @@
-<% if any_filtering_params? && Spree::Tracker.current(:segment, current_store) %>
+<% if segment_enabled? && any_filtering_params? %>
   <script>
     window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
