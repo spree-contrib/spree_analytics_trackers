@@ -3,6 +3,7 @@
   {
     "@context":"https://schema.org",
     "@type":"Product",
+    "sku":"<%= @product.default_variant.sku? ? @product.default_variant.sku : @product.sku %>",
     "productID":"<%= @product.id %>",
     "name":"<%= @product.name %>",
     "description":"<%= @product.description %>",
@@ -15,7 +16,7 @@
         "price": "<%= @product.price_in(current_currency).amount&.to_f %>",
         "priceCurrency": "<%= current_currency %>",
         "itemCondition": "NewCondition",
-        "availability": "InStock"
+        "availability": <%= @product.in_stock? ? 'InStock' : 'OutOfStock' %>
       }
     ]
   }
