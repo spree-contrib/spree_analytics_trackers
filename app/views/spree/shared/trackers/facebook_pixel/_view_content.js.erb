@@ -16,7 +16,7 @@
         "price": "<%= @product.price_in(current_currency).amount&.to_f %>",
         "priceCurrency": "<%= current_currency %>",
         "itemCondition": "NewCondition",
-        "availability": <%= @product.in_stock? ? 'InStock' : 'OutOfStock' %>
+        "availability": "<%= @product.in_stock? ? 'InStock' : 'OutOfStock' %>"
       }
     ]
   }
