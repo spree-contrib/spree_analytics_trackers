@@ -1,9 +1,7 @@
 module SpreeAnalyticsTrackers
   module UserSessionsControllerDecorator
     def self.included(base)
-      base.include ::Spree::TrackersHelper
-
-      base.helper_method *::Spree::TrackersHelper.public_instance_methods
+      base.helper 'spree/trackers'
     end
   end
 end
