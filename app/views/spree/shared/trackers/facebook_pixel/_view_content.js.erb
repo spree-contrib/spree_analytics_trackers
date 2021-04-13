@@ -1,27 +1,4 @@
 <% if @product.present? && Spree::Tracker.current(:facebook_pixel, current_store) %>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Product",
-    "sku":"<%= @product.default_variant.sku? ? @product.default_variant.sku : @product.sku %>",
-    "productID":"<%= @product.id %>",
-    "name":"<%= @product.name %>",
-    "description":"<%= @product.description %>",
-    "url": "<%= (url_for(controller: controller_name, action: action_name, host: root_url, protocol: :https)) %>",
-    "image":"<%= default_image_for_product_or_variant(@product) %>",
-    "brand":"<%= @product.brand&.name %>",
-    "offers": [
-      {
-        "@type": "Offer",
-        "price": "<%= @product.price_in(current_currency).amount&.to_f %>",
-        "priceCurrency": "<%= current_currency %>",
-        "itemCondition": "NewCondition",
-        "availability": "<%= @product.in_stock? ? 'InStock' : 'OutOfStock' %>"
-      }
-    ]
-  }
-  </script>
-
   <%= javascript_tag do %>
     fbq('track', 'ViewContent', <%= product_for_fb(@product)%>);
   <% end %>
