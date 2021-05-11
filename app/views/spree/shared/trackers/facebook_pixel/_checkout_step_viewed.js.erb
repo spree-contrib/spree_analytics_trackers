@@ -1,5 +1,5 @@
 <% if @order.present? && !@order.completed? && Spree::Tracker.current(:facebook_pixel, current_store) %>
-  <% if @order.state == 'address' %>
+  <% if @order.state == 'payment' %>
     <%= javascript_tag do %>
       setTimeout(function () {
         fbq('track', 'InitiateCheckout', {
