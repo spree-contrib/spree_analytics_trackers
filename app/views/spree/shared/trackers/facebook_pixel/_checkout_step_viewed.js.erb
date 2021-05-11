@@ -9,7 +9,8 @@
             <% @order.line_items.each do |line_item| %>
               '<%= line_item.variant.sku %>',
             <% end %>
-          ]
+          ],
+          content_type: 'product'
         });
       }, 0);
     <% end %>
