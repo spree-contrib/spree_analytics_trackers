@@ -1,4 +1,4 @@
-<% if @product.present? && Spree::Tracker.current(:facebook_pixel, current_store) %>
+<% if pixel_enabled? && @product.present? %>
   <%= javascript_tag do %>
     fbq('track', 'ViewContent', <%= product_for_fb(@product)%>);
   <% end %>

@@ -1,4 +1,4 @@
-<% if tracker = Spree::Tracker.current(:google_analytics, current_store) %>
+<% if ga_enabled? %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<%= tracker.analytics_id %>"></script>
   <script>
@@ -6,12 +6,12 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', '<%= tracker.analytics_id %>', { 'send_page_view': false });
+    gtag('config', '<%= ga_tracker.analytics_id %>', { 'send_page_view': false });
     gtag('set', 'allow_google_signals', true )
     gtag('set', 'allow_ad_personalization_signals', true );
     
-    <% if tracker.second_analytics_id.present? %>
-      gtag('config', '<%= tracker.second_analytics_id %>', { 'send_page_view': false });
+    <% if ga_tracker.second_analytics_id.present? %>
+      gtag('config', '<%= ga_tracker.second_analytics_id %>', { 'send_page_view': false });
     <% end %>
 
     function clearGAplugins() {

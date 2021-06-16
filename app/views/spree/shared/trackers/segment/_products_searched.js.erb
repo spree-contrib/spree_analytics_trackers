@@ -1,4 +1,4 @@
-<% if params.key?(:keywords) && params[:keywords].present? && Spree::Tracker.current(:segment, current_store) %>
+<% if segment_enabled? && params.key?(:keywords) && params[:keywords].present? %>
 <script>
   window.addEventListener('turbolinks:load', function() {
     if (typeof analytics !== 'undefined') {

@@ -1,4 +1,4 @@
-<% if tracker = Spree::Tracker.current(:segment, current_store) %>
+<% if segment_enabled? %>
   <script>
     if (typeof analytics !== 'undefined') {
       analytics.page();

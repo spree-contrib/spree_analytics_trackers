@@ -1,4 +1,4 @@
-<% if @order.present? && !@order.completed? && Spree::Tracker.current(:facebook_pixel, current_store) %>
+<% if pixel_enabled? && @order.present? && !@order.completed? %>
   <% if @order.state == 'payment' %>
     <%= javascript_tag do %>
       setTimeout(function () {

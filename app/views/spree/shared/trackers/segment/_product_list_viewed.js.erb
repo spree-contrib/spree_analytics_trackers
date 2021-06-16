@@ -1,4 +1,4 @@
-<% if defined?(products) && products.present? && Spree::Tracker.current(:segment, current_store) %>
+<% if segment_enabled? && defined?(products) && products.present? %>
   <script>
     window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
