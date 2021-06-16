@@ -2,9 +2,7 @@ module SpreeAnalyticsTrackers
   module StoreControllerDecorator
     def self.included(base)
       base.include ::Spree::BaseHelper
-      base.include ::Spree::TrackersHelper
-
-      base.helper_method *::Spree::TrackersHelper.public_instance_methods
+      base.helper 'spree/trackers'
     end
   end
 end
