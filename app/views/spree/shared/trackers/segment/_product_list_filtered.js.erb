@@ -15,8 +15,8 @@
           ]
         }
         <% if user = try_spree_current_user %>
-            analytics.identify('user.id', {
-              email: 'user.email'
+            analytics.identify('<%= user.id %>', {
+              email: '<%= user.email %>'
             });
         <% end %>
         analytics.track('Product List Filtered', segmentProductListFilteredJson);

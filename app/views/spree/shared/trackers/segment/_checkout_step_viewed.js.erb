@@ -3,8 +3,8 @@
     window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
         <% if user = try_spree_current_user %>
-          analytics.identify('user.id', {
-            email: 'user.email'
+          analytics.identify('<%= user.id %>', {
+            email: '<%= user.email %>'
           });
         <% end %>
         analytics.track('Checkout Step Viewed', {
