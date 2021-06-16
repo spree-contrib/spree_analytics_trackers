@@ -8,6 +8,7 @@ module SpreeAnalyticsTrackers
         return unless File.file?(javascripts_path)
 
         append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/add_to_cart_analytics\n"
+        append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/remove_from_cart_analytics\n"
       end
 
       def add_migrations
