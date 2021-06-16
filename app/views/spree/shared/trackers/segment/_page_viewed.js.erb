@@ -1,6 +1,11 @@
 <% if segment_enabled? %>
   <script>
     if (typeof analytics !== 'undefined') {
+      <% if user = try_spree_current_user %>
+        analytics.identify('user.id', {
+          email: 'user.email'
+        });
+      <% end %>
       analytics.page();
     }
   </script>

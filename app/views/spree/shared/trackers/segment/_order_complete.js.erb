@@ -3,6 +3,11 @@
   <script>
     window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
+        <% if user = try_spree_current_user %>
+          analytics.identify('user.id', {
+            email: 'user.email'
+          });
+        <% end %>
         analytics.track('Order Completed', <%= order_json.html_safe %>);
         analytics.page('Order Completed', <%= order_json.html_safe %>);
       }

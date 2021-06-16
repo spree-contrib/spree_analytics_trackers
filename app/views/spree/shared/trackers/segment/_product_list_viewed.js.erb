@@ -10,7 +10,12 @@
           <% end %>
           ]
         }
-
+        
+        <% if user = try_spree_current_user %>
+            analytics.identify('user.id', {
+              email: 'user.email'
+            });
+        <% end %>
         analytics.track('Product List Viewed', segmentProductListViewedJson);
         analytics.page('Product List Viewed', segmentProductListViewedJson);
       }
