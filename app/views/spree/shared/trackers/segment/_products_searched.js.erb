@@ -1,5 +1,6 @@
 <% if params.key?(:keywords) && params[:keywords].present? && Spree::Tracker.current(:segment, current_store) %>
-  <script>
+<script>
+  window.addEventListener('turbolinks:load', function() {
     if (typeof analytics !== 'undefined') {
       analytics.track('Products Searched', {
         query: '<%= params[:keywords] %>',
@@ -8,5 +9,6 @@
         query: '<%= params[:keywords] %>',
       });
     }
-  </script>
+  });
+</script>
 <% end %>

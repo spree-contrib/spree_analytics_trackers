@@ -1,5 +1,6 @@
 <% if any_filtering_params? && Spree::Tracker.current(:segment, current_store) %>
   <script>
+    window.addEventListener('turbolinks:load', function() {
     if (typeof analytics !== 'undefined') {
       var segmentProductListFilteredJson = {
         filters: [
@@ -17,5 +18,6 @@
       analytics.track('Product List Filtered', segmentProductListFilteredJson);
       analytics.page('Product List Filtered', segmentProductListFilteredJson);
     }
+    });
   </script>
 <% end %>

@@ -1,29 +1,31 @@
 <% if @order.present? && order_just_completed?(@order) && tracker = Spree::Tracker.current(:google_analytics, current_store) %>
   <script>
-    if (typeof gtag !== 'undefined') {
-      clearGAplugins();
-      gtag('event', 'purchase', {
-        transaction_id: '<%= @order.number %>',
-        value: <%= @order.total&.to_f %>,
-        currency: '<%= @order.currency %>',
-        tax: <%= @order.tax_total&.to_f %>,
-        shipping: <%= @order.shipment_total&.to_f %>,
-        coupon: '<%= @order.promo_code %>',
-        items: [
-          <% @order.line_items.each do |line_item| %>
-            <%= ga_line_item(line_item) %>,
-          <% end %>
-        ]
-      });
+    window.addEventListener('turbolinks:load', function() {
+      if (typeof gtag !== 'undefined') {
+        clearGAplugins();
+        gtag('event', 'purchase', {
+          transaction_id: '<%= @order.number %>',
+          value: <%= @order.total&.to_f %>,
+          currency: '<%= @order.currency %>',
+          tax: <%= @order.tax_total&.to_f %>,
+          shipping: <%= @order.shipment_total&.to_f %>,
+          coupon: '<%= @order.promo_code %>',
+          items: [
+            <% @order.line_items.each do |line_item| %>
+              <%= ga_line_item(line_item) %>,
+            <% end %>
+          ]
+        });
 
-    <% if tracker.second_analytics_id.present? && tracker.purchase_id.present? %>
-      gtag('event', 'conversion', {
-        send_to: '<%= tracker.purchase_id %>',
-        value: <%= @order.total&.to_f %>,
-        currency: '<%= @order.currency %>',
-        transaction_id: '<%= @order.number %>'
-      });
-    <% end %>
-    }
+      <% if tracker.second_analytics_id.present? && tracker.purchase_id.present? %>
+        gtag('event', 'conversion', {
+          send_to: '<%= tracker.purchase_id %>',
+          value: <%= @order.total&.to_f %>,
+          currency: '<%= @order.currency %>',
+          transaction_id: '<%= @order.number %>'
+        });
+      <% end %>
+      }
+    });
   </script>
 <% end %>
