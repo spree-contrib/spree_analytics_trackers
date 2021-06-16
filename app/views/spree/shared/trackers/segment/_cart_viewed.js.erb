@@ -7,9 +7,9 @@
           products: [
           <% @order.line_items.each_with_index do |line_item, index| %>
             <%= product_for_segment(
-              line_item.product, 
-              position: index+1, 
-              quantity: line_item.quantity, 
+              line_item.product,
+              position: index + 1,
+              quantity: line_item.quantity,
               image: default_image_for_product_or_variant(line_item.variant)
             ) %>,
           <% end %>
