@@ -1,23 +1,23 @@
 <% if any_filtering_params? && Spree::Tracker.current(:segment, current_store) %>
   <script>
     window.addEventListener('turbolinks:load', function() {
-    if (typeof analytics !== 'undefined') {
-      var segmentProductListFilteredJson = {
-        filters: [
-          <% filtering_params_with_values.each do |type, value| %>
-            <%= { type: type, value: value } .to_json.html_safe %>,
+      if (typeof analytics !== 'undefined') {
+        var segmentProductListFilteredJson = {
+          filters: [
+            <% filtering_params_with_values.each do |type, value| %>
+              <%= { type: type, value: value } .to_json.html_safe %>,
+            <% end %>
+          ],
+          products: [
+          <% @products.each_with_index do |product, index| %>
+            <%= product_for_segment(product, position: index+1) %>,
           <% end %>
-        ],
-        products: [
-        <% @products.each_with_index do |product, index| %>
-          <%= product_for_segment(product, position: index+1) %>,
-        <% end %>
-        ]
-      }
+          ]
+        }
 
-      analytics.track('Product List Filtered', segmentProductListFilteredJson);
-      analytics.page('Product List Filtered', segmentProductListFilteredJson);
-    }
+        analytics.track('Product List Filtered', segmentProductListFilteredJson);
+        analytics.page('Product List Filtered', segmentProductListFilteredJson);
+      }
     });
   </script>
 <% end %>
