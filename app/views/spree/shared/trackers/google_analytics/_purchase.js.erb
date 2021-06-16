@@ -17,9 +17,9 @@
           ]
         });
 
-      <% if tracker.second_analytics_id.present? && tracker.purchase_id.present? %>
+      <% if ga_tracker.second_analytics_id.present? && ga_tracker.purchase_id.present? %>
         gtag('event', 'conversion', {
-          send_to: '<%= tracker.purchase_id %>',
+          send_to: '<%= ga_tracker.purchase_id %>',
           value: <%= @order.total&.to_f %>,
           currency: '<%= @order.currency %>',
           transaction_id: '<%= @order.number %>'
