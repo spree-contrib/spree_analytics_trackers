@@ -7,6 +7,8 @@
           analytics.identify('<%= user.id %>', {
             email: '<%= user.email %>'
           });
+        <% else %>
+          analytics.identify({});
         <% end %>
         analytics.track('Order Completed', <%= order_json.html_safe %>);
         analytics.page('Order Completed', <%= order_json.html_safe %>);

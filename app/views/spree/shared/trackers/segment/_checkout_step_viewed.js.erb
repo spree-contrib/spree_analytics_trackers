@@ -6,6 +6,8 @@
           analytics.identify('<%= user.id %>', {
             email: '<%= user.email %>'
           });
+        <% else %>
+          analytics.identify({});
         <% end %>
         analytics.track('Checkout Step Viewed', {
           checkout_id: '<%= @order.number %>',
