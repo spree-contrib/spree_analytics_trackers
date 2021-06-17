@@ -4,13 +4,6 @@
     if (typeof analytics !== 'undefined') {
       var segmentProductViewed = <%= product_for_segment(@product, image: default_image_for_product_or_variant(@product)) %>;
 
-      <% if user = try_spree_current_user %>
-          analytics.identify('<%= user.id %>', {
-            email: '<%= user.email %>'
-          });
-      <% else %>
-          analytics.identify({});
-      <% end %>
       analytics.page('Product Viewed', segmentProductViewed);
       analytics.track('Product Viewed', segmentProductViewed);
     }
