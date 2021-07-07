@@ -1,7 +1,6 @@
 <% if segment_enabled? %>
   <script>
     window.onload = function(){
-      debugger
       if (typeof analytics !== 'undefined') {
       <% if user = try_spree_current_user %>
         analytics.identify('<%= user.id %>', {
