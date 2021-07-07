@@ -1,14 +1,18 @@
 <% if segment_enabled? %>
   <script>
-    if (typeof analytics !== 'undefined') {
+    window.onload = function(){
+      debugger
+      if (typeof analytics !== 'undefined') {
       <% if user = try_spree_current_user %>
         analytics.identify('<%= user.id %>', {
-          email: '<%= user.email %>'
+         email: getCookie('user_email')
         });
       <% else %>
-          analytics.identify({});
+        analytics.identify({});
       <% end %>
-      analytics.page();
+        analytics.page();
     }
+  };
   </script>
 <% end %>
+
