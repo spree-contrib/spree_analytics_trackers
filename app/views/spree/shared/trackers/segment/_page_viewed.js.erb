@@ -3,7 +3,7 @@
     window.onload = function(){
       if (typeof analytics !== 'undefined') {
       <% if user = try_spree_current_user %>
-        analytics.identify('<%= user.id %>', {
+        analytics.identify(getCookie('user_id'), {
          email: getCookie('user_email')
         });
       <% else %>
