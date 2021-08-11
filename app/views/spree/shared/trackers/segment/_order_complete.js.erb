@@ -3,7 +3,8 @@
   <script>
     window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
-       analytics.track('Order Completed', <%= order_json.html_safe %>, { integrations: { Friendbuy: { newCustomer: true }} });
+        analytics.track('Order Completed', <%= order_json.html_safe %>, { integrations: { Friendbuy: { newCustomer: true }} });
+        analytics.page('Order Completed', <%= order_json.html_safe %>);
       }
     });
   </script>
