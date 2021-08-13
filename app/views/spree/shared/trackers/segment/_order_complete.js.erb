@@ -3,8 +3,8 @@
   <script>
     window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
-        analytics.track('Order Completed', <%= order_json.html_safe %>);
-        analytics.page('Order Completed', <%= order_json.html_safe %>);
+          analytics.track('Order Completed', <%= order_json.html_safe %>, { integrations: { Friendbuy: { newCustomer: <%= @order.user&.orders&.complete&.count == 1  %> }} });
+          analytics.page('Order Completed');
       }
     });
   </script>
