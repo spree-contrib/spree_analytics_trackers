@@ -1,5 +1,6 @@
 <% if segment_enabled? && any_filtering_params? %>
   <script>
+    window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
         var segmentProductListFilteredJson = {
           filters: [
@@ -14,6 +15,8 @@
           ]
         }
         analytics.track('Product List Filtered', segmentProductListFilteredJson);
+        analytics.page('Product List Filtered', segmentProductListFilteredJson);
       }
+    });
   </script>
 <% end %>
