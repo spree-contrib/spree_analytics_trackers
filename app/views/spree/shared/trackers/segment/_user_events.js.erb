@@ -3,15 +3,21 @@
   if (typeof analytics !== 'undefined') {
     if (!!getUserCookie('user_id') && !!getUserCookie('user_email')) {
 
-      function loginSubmitEvent() {
+      function loginSubmitEvent(id, email) {
+        document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        analytics.identify(id, { email: email });
         analytics.track('Signed In');
       };
 
-      function registrationSubmitEvent() {
+      function registrationSubmitEvent(id, email) {
+        document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        analytics.identify(id, { email: email });
         analytics.track('Signed Up');
       };
 
       function signOutEvent() {
+        document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        analytics.identify(getUserCookie('user_id'), { email: getUserCookie('user_email') });
         analytics.track('Signed Up');
       };
 

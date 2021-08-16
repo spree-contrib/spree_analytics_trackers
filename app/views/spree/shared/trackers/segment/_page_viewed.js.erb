@@ -14,9 +14,6 @@
       if (!!getUserCookie('user_id') && !!getUserCookie('user_email')) {
         analytics.identify(getUserCookie('user_id'), { email: getUserCookie('user_email') });
       }
-      else {
-        analytics.identify();
-      }
       window.addEventListener('turbolinks:load', function() {
         window.readyToSegment = true;
       });
