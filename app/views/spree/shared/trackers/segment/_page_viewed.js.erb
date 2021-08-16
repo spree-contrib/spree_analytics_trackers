@@ -1,17 +1,25 @@
 <% if segment_enabled? %>
   <script>
-    window.onload = function(){
-      if (typeof analytics !== 'undefined') {
-        if (!!getCookie('user_id') && !!getCookie('user_email')) {
-          analytics.identify(getCookie('user_id'), {
-          email: getCookie('user_email')
-          })
-        }
-        else {
-          analytics.identify({});
-        }
+    let getUserCookie = function (name) {
+      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      if (match) {
+          return decodeURIComponent(match[2]);
+      } else {
+          return '';
       }
+    }
+
+    if (typeof analytics !== 'undefined') {
       analytics.page();
-    };
+      if (!!getUserCookie('user_id') && !!getUserCookie('user_email')) {
+        analytics.identify(getUserCookie('user_id'), { email: getUserCookie('user_email') });
+      }
+      else {
+        analytics.identify();
+      }
+      window.addEventListener('turbolinks:load', function() {
+        window.readyToSegment = true;
+      });
+    }
   </script>
 <% end %>

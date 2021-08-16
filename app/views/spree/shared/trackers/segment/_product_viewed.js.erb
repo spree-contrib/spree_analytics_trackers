@@ -1,12 +1,9 @@
 <% if segment_enabled? && @product.present? %>
 <script>
-  window.addEventListener('turbolinks:load', function() {
     if (typeof analytics !== 'undefined') {
       var segmentProductViewed = <%= product_for_segment(@product, image: default_image_for_product_or_variant(@product)) %>;
 
-      analytics.page('Product Viewed', segmentProductViewed);
       analytics.track('Product Viewed', segmentProductViewed);
     }
-  });
 </script>
 <% end %>

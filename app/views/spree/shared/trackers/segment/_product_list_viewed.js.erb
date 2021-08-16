@@ -1,18 +1,15 @@
-<% if segment_enabled? && defined?(products) && products.present? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
-        var segmentProductListViewedJson = {
-          category: '<%= @taxon&.name %>',
-          products: [
-          <% products.each_with_index do |product, index| %>
-            <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
-          <% end %>
-          ]
-        }
-        analytics.track('Product List Viewed', segmentProductListViewedJson);
-        analytics.page('Product List Viewed', segmentProductListViewedJson);
+        <% if segment_enabled? && defined?(products) && products.present? %>
+          var segmentProductListViewedJson = {
+            category: '<%= @taxon&.name %>',
+            products: [
+              <% products.each_with_index do |product, index| %>
+              <%= product_for_segment(product, position: index+1, image: default_image_for_product_or_variant(product)) %>,
+              <% end %>
+            ]
+          }
+          analytics.track('Product List Viewed', segmentProductListViewedJson);
+        <% end %>
       }
-    });
   </script>
-<% end %>
