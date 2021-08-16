@@ -16,9 +16,10 @@
       };
 
       function signOutEvent() {
+        debugger
+        analytics.track('Signed Out');
+        analytics.reset();
         document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        analytics.identify(getUserCookie('user_id'), { email: getUserCookie('user_email') });
-        analytics.track('Signed Up');
       };
 
     }
