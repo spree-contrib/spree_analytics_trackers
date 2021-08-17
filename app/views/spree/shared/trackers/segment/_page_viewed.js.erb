@@ -1,15 +1,8 @@
 <% if segment_enabled? %>
   <script>
-    let getUserCookie = function (name) {
-      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      if (match) {
-          return decodeURIComponent(match[2]);
-      } else {
-          return '';
-      }
-    }
     if (typeof analytics !== 'undefined') {
       analytics.page();
+
       window.addEventListener('turbolinks:load', function() {
         window.readyToSegment = true;
       });
