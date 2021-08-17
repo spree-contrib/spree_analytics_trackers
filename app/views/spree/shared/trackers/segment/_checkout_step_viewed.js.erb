@@ -1,16 +1,10 @@
 <% if segment_enabled? && @order.present? && !@order.completed? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
         analytics.track('Checkout Step Viewed', {
           checkout_id: '<%= @order.number %>',
           step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
         });
-        analytics.page('Checkout Step Viewed', {
-          checkout_id: '<%= @order.number %>',
-          step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
-        });
       }
-    });
   </script>
 <% end %>  
