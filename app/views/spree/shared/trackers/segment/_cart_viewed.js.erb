@@ -1,6 +1,5 @@
 <% if segment_enabled? && @order.present? && !@order.complete? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
         var segmentCartJson = {
           cart_id: '<%= @order.number %>',
@@ -17,8 +16,6 @@
         }
 
         analytics.track('Cart Viewed', segmentCartJson);
-        analytics.page('Cart Viewed', segmentCartJson);
       }
-    });
   </script>
 <% end %>
