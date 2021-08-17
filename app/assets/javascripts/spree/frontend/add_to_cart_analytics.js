@@ -32,15 +32,16 @@ function fbAddToCart(variant, currency) {
   });
 }
 
-function segmentAddtoCart(variant, quantity, currency) {
+function segmentAddtoCart(variant, quantity, cartNumber) {
   analytics.track('Product Added', {
+    cart_id: cartNumber,
     product_id: variant.id,
     sku: variant.sku,
     category: variant.category,
     name: variant.name,
     brand: variant.brand,
-    price: variant.price,
-    currency: currency,
+    price: variant.price.amount,
+    currency: variant.price.currency,
     quantity: quantity
   });
 }
@@ -60,7 +61,7 @@ Spree.ready(function(){
     }
 
     if (typeof analytics !== 'undefined') {
-      segmentAddtoCart(variant, quantity, currency)
+      segmentAddtoCart(variant, quantity, event.cart.number)
     }
   })
 });
