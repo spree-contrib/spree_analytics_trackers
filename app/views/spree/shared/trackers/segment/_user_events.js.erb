@@ -21,6 +21,13 @@
         document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       };
 
+      function repeatOrderEvent(order) {
+        analytics.track('Repeat Order', {
+          id: order.id,
+          number: order.number
+        });
+      };
+
     }
   }
 </script>
