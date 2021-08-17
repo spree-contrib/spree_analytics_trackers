@@ -1,7 +1,6 @@
 <% if segment_enabled? %>
 <script>
   if (typeof analytics !== 'undefined') {
-    if (!!getUserCookie('user_id') && !!getUserCookie('user_email')) {
 
       function loginSubmitEvent(id, email) {
         document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -28,7 +27,6 @@
         });
       };
 
-    }
   }
 </script>
 <% end %>
