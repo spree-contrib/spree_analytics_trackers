@@ -17,18 +17,27 @@ function gaRemoveFromCart(variant) {
   );
 }
 
+function segmentRemoveFromCart(variant) {
+  analytics.track('Product Removed', variant);
+}
+
 Spree.ready(function(){
   $('body').on('product_remove_from_cart', function(event) {
     var variant = {
-      sku: event.variant_sku,
-      name: event.variant_name,
-      price: event.variant_price,
-      options: event.variant_options,
-      quantity: event.variant_quantity
+      cart_id: event.cart.number,
+      sku: event.variant.sku,
+      id: event.variant.id,
+      price: event.variant.price.amount,
+      currency: event.variant.price.currency,
+      quantity: event.variant.variant_quantity  || event.quantity
     }
 
     if (typeof gtag !== 'undefined') {
-      gaRemoveFromCart(variant)
+      //gaRemoveFromCart(variant)
+    }
+
+    if (typeof analytics !== 'undefined') {
+      segmentRemoveFromCart(variant)
     }
   })
 })

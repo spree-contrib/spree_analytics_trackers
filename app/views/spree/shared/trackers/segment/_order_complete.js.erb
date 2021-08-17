@@ -1,11 +1,8 @@
 <% if segment_enabled? && @order.present? && order_just_completed?(@order) %>
   <% order_json = SpreeAnalyticsTrackers::Segment::OrderPresenter.new(@order).to_json %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
       if (typeof analytics !== 'undefined') {
           analytics.track('Order Completed', <%= order_json.html_safe %>, { integrations: { Friendbuy: { newCustomer: <%= @order.user&.orders&.complete&.count == 1  %> }} });
-          analytics.page('Order Completed');
       }
-    });
   </script>
 <% end %>
