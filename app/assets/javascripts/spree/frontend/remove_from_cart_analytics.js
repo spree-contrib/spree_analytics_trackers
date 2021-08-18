@@ -29,7 +29,7 @@ Spree.ready(function(){
       id: event.variant ? event.variant.id : null,
       price: event.variant ? event.variant.price.amount: event.variant_price,
       currency: event.variant ? event.variant.price.currency: 'CLP',
-      quantity: event.variant.variant_quantity  || event.quantity
+      quantity: event.variant ? event.variant.variant_quantity : event.variant_quantity
     }
 
     if (typeof gtag !== 'undefined') {
