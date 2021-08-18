@@ -24,11 +24,11 @@ function segmentRemoveFromCart(variant) {
 Spree.ready(function(){
   $('body').on('product_remove_from_cart', function(event) {
     var variant = {
-      cart_id: event.cart.number,
-      sku: event.variant.sku,
-      id: event.variant.id,
-      price: event.variant.price.amount,
-      currency: event.variant.price.currency,
+      cart_id: event.cart ? event.cart.number : null,
+      sku: event.variant ? event.variant.sku : event.variant_sku,
+      id: event.variant ? event.variant.id : null,
+      price: event.variant ? event.variant.price.amount: event.variant_price,
+      currency: event.variant ? event.variant.price.currency: 'CLP',
       quantity: event.variant.variant_quantity  || event.quantity
     }
 
