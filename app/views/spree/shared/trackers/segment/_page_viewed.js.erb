@@ -1,7 +1,20 @@
 <% if segment_enabled? %>
   <script>
+
+    let getUserCookie = function (name) {
+      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      if (match) {
+          return decodeURIComponent(match[2]);
+      } else {
+          return '';
+      }
+    }
+
     if (typeof analytics !== 'undefined') {
       analytics.page();
+      if (!!getUserCookie('user_id') && !!getUserCookie('user_email')) {
+        analytics.identify(getUserCookie('user_id'), { email: getUserCookie('user_email') });
+      }
 
       window.addEventListener('turbolinks:load', function() {
         window.readyToSegment = true;

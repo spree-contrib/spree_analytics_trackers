@@ -27,8 +27,8 @@ Spree.ready(function(){
       cart_id: event.cart ? event.cart.number : null,
       sku: event.variant ? event.variant.sku : event.variant_sku,
       id: event.variant ? event.variant.id : null,
-      price: event.variant ? event.variant.price.amount: event.variant_price,
-      currency: event.variant ? event.variant.price.currency: 'CLP',
+      price: event.variant ? event.variant.price.amount : event.variant_price,
+      currency: event.variant ? event.variant.price.currency : 'CLP',
       quantity: event.variant ? event.variant.variant_quantity : event.variant_quantity
     }
 
