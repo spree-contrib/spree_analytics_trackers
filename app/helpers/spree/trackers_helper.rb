@@ -66,7 +66,8 @@ module Spree
           variant: variant.options_text,
           brand: product.brand&.name,
           quantity: line_item.quantity,
-          price: variant.price_in(current_currency).amount&.to_f
+          price: variant.price_in(current_currency).amount&.to_f,
+          google_business_vertical: 'retail'
         }.to_json.html_safe
       end
     end
