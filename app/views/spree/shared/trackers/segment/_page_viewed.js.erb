@@ -13,7 +13,30 @@
     if (typeof analytics !== 'undefined') {
       analytics.page();
       if (!!getUserCookie('user_id') && !!getUserCookie('user_email')) {
-        analytics.identify(getUserCookie('user_id'), { email: getUserCookie('user_email') });
+        <% user_address = spree_current_user&.addresses&.last %>
+        let traits = {
+          email: getUserCookie('user_email'),
+          name: '<%= user_address&.full_name %>',
+          phone: '<%= user_address&.phone %>'
+        }
+
+        <% if current_order.present? %>
+          traits = {
+            ...traits,
+            cart: [
+              <% current_order&.line_items&.each do |item| %>
+                {
+                  name: '<%= item.name %>',
+                  price: '<%= item.price %>',
+                  product_id: '<%= item.id %>',
+                  url: '<%= products_url(item.slug) %>',
+                },
+              <% end %>
+            ]
+          }
+        <% end %>
+
+        analytics.identify(getUserCookie('user_id'), traits);
       }
 
       window.addEventListener('turbolinks:load', function() {
