@@ -12,30 +12,28 @@
 
     if (typeof analytics !== 'undefined') {
       analytics.page();
-      if (!!getUserCookie('user_id') && !!getUserCookie('user_email')) {
-        <% user_address = spree_current_user&.addresses&.last %>
-        let traits = {
-          email: getUserCookie('user_email'),
-          name: '<%= user_address&.full_name %>',
-          phone: '<%= user_address&.phone %>'
-        }
 
+      if (!!getUserCookie('user_id')) {
+        <% user_address = spree_current_user&.addresses&.last %>
         <% if current_order.present? %>
-          traits = {
-            ...traits,
+          const traits = {
+            email: '<%= spree_current_user&.email %>',
+            name: '<%= user_address&.full_name %>',
+            phone: '<%= user_address&.phone %>',
+            total: '<%= current_order.total %>',
             cart: [
-              <% current_order&.line_items&.each do |item| %>
+              <% current_order.line_items.each do |item| %>
                 {
                   name: '<%= item.name %>',
                   price: '<%= item.price %>',
                   product_id: '<%= item.id %>',
-                  url: '<%= products_url(item.slug) %>',
+                  url: '<%= product_url(item.variant) %>',
+                  image: '<%= img_cdn_url(item.variant.images.first, 400, 400) if item.variant.images.any? %>',
                 },
               <% end %>
             ]
           }
         <% end %>
-
         analytics.identify(getUserCookie('user_id'), traits);
       }
 
