@@ -28,7 +28,7 @@
                   price: '<%= item.price %>',
                   product_id: '<%= item.id %>',
                   url: '<%= product_url(item.variant) %>',
-                  image: '<%= img_cdn_url(item.variant.images.first, 400, 400) %>',
+                  image: '<%= img_cdn_url(item.variant.images.first, 400, 400) if item.variant.images.any? %>',
                 },
               <% end %>
             ]
