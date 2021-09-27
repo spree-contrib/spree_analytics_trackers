@@ -12,14 +12,16 @@
 
     if (typeof analytics !== 'undefined') {
       analytics.page();
-
-      if (!!getUserCookie('user_id')) {
+      <% if current_order.present? %>
+        if (!!getUserCookie('user_id')) {
           const traits = {
             email: !!getCookie('user_email') ? getCookie('user_email') : '',
             name: !!getCookie('name') ? getCookie('name') : '',
-            phone: !!getCookie('phone') ? getCookie('phone') : ''
-          }
-        analytics.identify(getUserCookie('user_id'), traits);
+            phone: !!getCookie('phone') ? getCookie('phone') : '',
+            total: '<%= current_order.total %>'
+        }
+        <% end %>
+      analytics.identify(getUserCookie('user_id'), traits);
       }
 
       window.addEventListener('turbolinks:load', function() {
