@@ -12,29 +12,16 @@
 
     if (typeof analytics !== 'undefined') {
       analytics.page();
-
-      if (!!getUserCookie('user_id')) {
-        <% user_address = spree_current_user&.addresses&.last %>
-        <% if current_order.present? %>
+      <% if current_order.present? %>
+        if (!!getUserCookie('user_id')) {
           const traits = {
-            email: '<%= spree_current_user&.email %>',
-            name: '<%= user_address&.full_name %>',
-            phone: '<%= user_address&.phone %>',
-            total: '<%= current_order.total %>',
-            cart: [
-              <% current_order.line_items.each do |item| %>
-                {
-                  name: '<%= item.name %>',
-                  price: '<%= item.price %>',
-                  product_id: '<%= item.id %>',
-                  url: '<%= product_url(item.variant) %>',
-                  image: '<%= img_cdn_url(item.variant.images.first, 400, 400) if item.variant.images.any? %>',
-                },
-              <% end %>
-            ]
-          }
+            email: !!getCookie('user_email') ? getCookie('user_email') : '',
+            name: !!getCookie('name') ? getCookie('name') : '',
+            phone: !!getCookie('phone') ? getCookie('phone') : '',
+            total: '<%= current_order.total %>'
+        }
         <% end %>
-        analytics.identify(getUserCookie('user_id'), traits);
+      analytics.identify(getUserCookie('user_id'), traits);
       }
 
       window.addEventListener('turbolinks:load', function() {
