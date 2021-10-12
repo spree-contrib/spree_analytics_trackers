@@ -1,7 +1,7 @@
 <% if segment_enabled? %>
   <script>
 
-    let getUserCookie = function (name) {
+    getUserCookie = function (name) {
       var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
       if (match) {
           return decodeURIComponent(match[2]);
@@ -11,21 +11,20 @@
     }
 
     if (typeof analytics !== 'undefined') {
-      analytics.page();
-      <% if current_order.present? %>
-        if (!!getUserCookie('user_id')) {
-          const traits = {
-            email: !!getCookie('user_email') ? getCookie('user_email') : '',
-            name: !!getCookie('name') ? getCookie('name') : '',
-            phone: !!getCookie('phone') ? getCookie('phone') : '',
-            total: '<%= current_order.total %>'
-        }
-        <% end %>
-      analytics.identify(getUserCookie('user_id'), traits);
-      }
-
       window.addEventListener('turbolinks:load', function() {
         window.readyToSegment = true;
+
+          if (!!getUserCookie('user_id')) {
+            let traits = {
+              email: !!getUserCookie('user_email') ? getUserCookie('user_email') : '',
+              name: !!getUserCookie('name') ? getUserCookie('name').replace('+', ' ') : '',
+              phone: !!getUserCookie('phone') ? getUserCookie('phone') : ''
+            }
+            analytics.identify(getUserCookie('user_id'), traits);
+          } else {
+            analytics.identify({});
+          }
+          analytics.page();
       });
     }
   </script>

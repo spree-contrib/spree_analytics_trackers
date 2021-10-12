@@ -1,23 +1,17 @@
 <% if segment_enabled? %>
-<script>
-  if (typeof analytics !== 'undefined') {
+  <script>
+    if (typeof analytics !== 'undefined') {
 
-      function loginSubmitEvent(id, email) {
-        document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        analytics.identify(id, { email: email });
+      function loginSubmitEvent() {
         analytics.track('Signed In');
       };
 
-      function registrationSubmitEvent(id, email) {
-        document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        analytics.identify(id, { email: email });
+      function registrationSubmitEvent() {
         analytics.track('Signed Up');
       };
 
       function signOutEvent() {
         analytics.track('Signed Out');
-        analytics.reset();
-        document.cookie = 'user_id' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       };
 
       function repeatOrderEvent(order) {
@@ -27,6 +21,6 @@
         });
       };
 
-  }
-</script>
+    }
+  </script>
 <% end %>
