@@ -130,5 +130,13 @@ module Spree
     def pixel_enabled?
       pixel_tracker.present?
     end
+
+    def appsflyer_tracker
+      @appsflyer_tracker ||= Spree::Tracker.current(:appsflyer, current_store)
+    end
+
+    def appsflyer_enabled?
+      appsflyer_tracker.present?
+    end
   end
 end

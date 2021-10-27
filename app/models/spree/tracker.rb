@@ -1,6 +1,6 @@
 module Spree
   class Tracker < Spree::Base
-    TRACKING_ENGINES = %i(google_analytics segment facebook_pixel).freeze
+    TRACKING_ENGINES = %i(google_analytics segment facebook_pixel appsflyer).freeze
     enum engine: TRACKING_ENGINES
 
     after_commit :clear_cache
