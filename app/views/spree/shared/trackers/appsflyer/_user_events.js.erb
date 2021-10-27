@@ -1,0 +1,10 @@
+<% if appsflyer_enabled? %>
+  <script>
+    if (typeof AF !== 'undefined') {
+
+      function setAppsflyerCUID(cuid) {
+        AF('pba', 'setCustomerUserId' , cuid)
+      };
+    }
+  </script>
+<% end %>

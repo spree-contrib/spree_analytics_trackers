@@ -1,0 +1,24 @@
+<% if segment_enabled? && @order.present? && order_just_completed?(@order) %>
+  <% order_json = SpreeAnalyticsTrackers::Appflyer::OrderPresenter.new(@order).to_json %>
+  <script>
+      integrations = {
+        Friendbuy: {
+          newCustomer: <%= @order.user&.orders&.complete&.count == 1  %>
+        }
+      }
+      if (typeof AF !== 'undefined') {
+          AF(
+            'pba',
+            'event',
+            {
+              eventType: 'EVENT',
+              eventName: 'order_completed',
+              eventRevenue: @order.total&.to_f,
+              eventRevenueCurrency: @order.currency,
+              eventValue: {'integrations': integrations},
+              eventValue: <%= order_json.html_safe %>
+            }
+          );
+      }
+  </script>
+<% end %>
