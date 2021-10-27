@@ -5,6 +5,39 @@
       function setAppsflyerCUID(cuid) {
         AF('pba', 'setCustomerUserId' , cuid)
       };
+
+      function appsflyerSignIn() {
+        AF(
+          'pba',
+          'event',
+          {
+            eventType: 'EVENT',
+            eventName: 'signed_in'
+          }
+        );
+      }
+
+      function appsflyerSignUp() {
+        AF(
+          'pba',
+          'event',
+          {
+            eventType: 'EVENT',
+            eventName: 'signed_up'
+          }
+        );
+      }
+
+      function appsflyerSignOut() {
+        AF(
+          'pba',
+          'event',
+          {
+            eventType: 'EVENT',
+            eventName: 'signed_out'
+          }
+        );
+      }
     }
   </script>
 <% end %>
