@@ -1,6 +1,6 @@
 <% if ga_enabled? %>
   <script>
-    document.addEventListener('turbolinks:load', function(event) {
+    window.addEventListener('turbolinks:load', function(event) {
       if (typeof gtag !== 'undefined') {
         <% if user_id = try_spree_current_user.try(:id) %>
           gtag('config', '<%= ga_tracker.analytics_id %>', {
@@ -16,7 +16,6 @@
             page_title: event.srcElement.title
           });
         <% end %>
-        console.log('The location is ' + event.data.url);
       }
     });
   </script>
