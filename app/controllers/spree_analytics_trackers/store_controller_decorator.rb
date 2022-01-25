@@ -8,6 +8,6 @@ module SpreeAnalyticsTrackers
   end
 end
 
-if defined?(::Spree::StoreController)
+if defined?(Spree::StoreController)
   ::Spree::StoreController.include(::SpreeAnalyticsTrackers::StoreControllerDecorator)
 end
