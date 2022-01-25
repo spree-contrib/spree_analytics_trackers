@@ -1,8 +1,7 @@
 <% if ga_enabled? %>
   <script>
-    document.addEventListener('turbolinks:load', function() {
+    document.addEventListener('turbolinks:load', function(event) {
       if (typeof gtag !== 'undefined') {
-        console.log('GTAG is defined');
         <% if user_id = try_spree_current_user.try(:id) %>
           gtag('config', '<%= ga_tracker.analytics_id %>', {
             'user_id': '<%= user_id %>',
@@ -10,15 +9,14 @@
             page_path: event.srcElement.location.pathname,
             page_title: event.srcElement.title
           });
-          console.log('USER is defined');
         <% else %>
           gtag('config', '<%= ga_tracker.analytics_id %>', {
             page_location: event.data.url,
             page_path: event.srcElement.location.pathname,
             page_title: event.srcElement.title
           });
-          console.log('USER is not defined');
         <% end %>
+        console.log('The location is ' + event.data.url);
       }
     });
   </script>
