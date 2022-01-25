@@ -2,12 +2,15 @@
   <script>
     window.addEventListener('turbolinks:load', function() {
       if (typeof gtag !== 'undefined') {
+        console.log('GTAG is defined');
         <% if user_id = try_spree_current_user.try(:id) %>
           gtag('config', '<%= ga_tracker.analytics_id %>', {
             'user_id': '<%= user_id %>'
+            console.log('USER is defined');
           });
         <% else %>
           gtag('config', '<%= ga_tracker.analytics_id %>');
+          console.log('USER is not defined');
         <% end %>
       }
     });
