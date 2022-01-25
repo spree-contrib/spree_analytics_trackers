@@ -1,6 +1,6 @@
 <% if ga_enabled? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
+    document.addEventListener('turbolinks:load', function() {
       if (typeof gtag !== 'undefined') {
         console.log('GTAG is defined');
         <% if user_id = try_spree_current_user.try(:id) %>
