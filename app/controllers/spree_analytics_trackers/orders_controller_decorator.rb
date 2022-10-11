@@ -6,6 +6,4 @@ module SpreeAnalyticsTrackers
   end
 end
 
-if defined?(Spree::OrdersController)
-  ::Spree::OrdersController.include(::SpreeAnalyticsTrackers::OrdersControllerDecorator)
-end
+::Spree::OrdersController.prepend(SpreeAnalyticsTrackers::OrdersControllerDecorator) if ::Spree::OrdersController.included_modules.exclude?(SpreeAnalyticsTrackers::OrdersControllerDecorator)
