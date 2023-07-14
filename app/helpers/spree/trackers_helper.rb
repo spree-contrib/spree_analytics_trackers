@@ -36,13 +36,13 @@ module Spree
 
       Rails.cache.fetch(cache_key) do
         {
-          id: product.sku,
-          name: product.name,
-          category: product.category&.name,
-          brand: product.brand&.name,
+          item_id: product.sku,
+          item_name: product.name,
+          item_category: product.category&.name,
+          item_brand: product.brand&.name,
           price: product.price_in(current_currency).amount&.to_f,
           currency: current_currency,
-        }.to_json.html_safe
+        }.merge(optional).to_json.html_safe
       end
     end
 
