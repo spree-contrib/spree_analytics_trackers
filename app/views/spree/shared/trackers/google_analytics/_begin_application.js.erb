@@ -1,0 +1,10 @@
+<% if ga_enabled? %>
+  <script>
+    document.addEventListener('turbolinks:load', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_application', {
+        });
+      };
+    });
+  </script>
+<% end %>
