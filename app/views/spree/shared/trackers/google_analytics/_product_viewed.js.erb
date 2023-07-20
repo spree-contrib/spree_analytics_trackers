@@ -1,0 +1,13 @@
+<% if ga_enabled? && @product.present? %>
+  <script>
+    window.addEventListener('turbolinks:load', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'view_item', {
+          items: [
+            <%= product_for_google(@product) %>,
+          ],
+        });
+      }
+    });
+  </script>
+<% end %>

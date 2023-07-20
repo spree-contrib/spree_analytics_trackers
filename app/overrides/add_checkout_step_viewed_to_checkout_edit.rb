@@ -13,6 +13,7 @@ unless spree_version >= Gem::Version.create('3.4.0') && spree_version < Gem::Ver
     name: 'add_ga_checkout_step_viewed_to_checkout_edit',
     insert_after: '[data-hook="checkout_content"]',
     partial: 'spree/shared/trackers/google_analytics/checkout_step_viewed.js',
-    original: '0ac5c18a2db215bf8ba30470a0e5d69e00d0313a'
+    original: '0ac5c18a2db215bf8ba30470a0e5d69e00d0313a',
+    disabled: true
   )
 end

@@ -1,13 +1,18 @@
 <% if ga_enabled? %>
   <script>
-    if (typeof gtag !== 'undefined') {
-      <% if user_id = try_spree_current_user.try(:id) %>
-        gtag('config', '<%= ga_tracker.analytics_id %>', {
-          'user_id': '<%= user_id %>'
+    window.addEventListener('turbolinks:load', function(event) {
+      if (typeof gtag !== 'undefined') {
+        <% if user_id = try_spree_current_user.try(:id) %>
+          gtag('set', {
+            'user_id': '<%= user_id %>'
+          });
+        <% end %>
+        gtag('event', 'page_view', {
+          page_location: event.data.url,
+          page_path: event.srcElement.location.pathname,
+          page_title: event.srcElement.title
         });
-      <% else %>
-        gtag('config', '<%= ga_tracker.analytics_id %>');
-      <% end %>
-    }
+      }
+    });
   </script>
 <% end %>
