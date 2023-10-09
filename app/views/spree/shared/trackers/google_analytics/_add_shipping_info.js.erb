@@ -1,0 +1,19 @@
+<% if ga_enabled? && @order.present? && !@order.completed? %>
+  <script>
+    document.addEventListener('turbolinks:load', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'add_shipping_info', {
+          currency: '<%= @order.currency %>',
+          value: <%= @order.total&.to_f %>,
+          coupon: '<%= @order.promo_code %>',
+          shipping_tier: '<%= @order.shipments.first.selected_shipping_rate.name %>',
+          items: [
+            <% @order.line_items.each do |line_item| %>
+              <%= ga_line_item(line_item) %>,
+            <% end %>
+          ],
+        });
+      };
+    });
+  </script>
+<% end %>

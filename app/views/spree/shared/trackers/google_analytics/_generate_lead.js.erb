@@ -1,0 +1,10 @@
+<% if ga_enabled? %>
+  <script>
+    document.getElementById('save-new-wholesaler').addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'generate_lead', {
+        });
+      };
+    });
+  </script>
+<% end %>

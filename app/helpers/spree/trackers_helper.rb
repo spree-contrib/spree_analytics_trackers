@@ -25,6 +25,26 @@ module Spree
         hash[:image_url] = default_image_for_product_or_variant(product)
       end.merge(optional).to_json.html_safe
     end
+    
+    def product_for_google(product, optional = {})
+      cache_key = [
+        'spree-google-product',
+        I18n.locale,
+        current_currency,
+        product.cache_key_with_version
+      ].compact.join('/')
+
+      Rails.cache.fetch(cache_key) do
+        {
+          item_id: product.sku,
+          item_name: product.name,
+          item_category: product.category&.name,
+          item_brand: product.brand&.name,
+          price: product.price_in(current_currency).amount&.to_f,
+          currency: current_currency,
+        }.merge(optional).to_json.html_safe
+      end
+    end
 
     def ga_line_item(line_item)
       variant = line_item.variant

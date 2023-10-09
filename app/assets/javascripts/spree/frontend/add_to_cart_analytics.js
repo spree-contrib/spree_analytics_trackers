@@ -1,15 +1,18 @@
 //= require spree/frontend
 
-function gaAddToCart(variant, quantity) {
+function gaAddToCart(currency, variant, quantity) {
   clearGAplugins();
   var price = typeof variant.price === 'object' ? variant.price.amount : variant.price
+  console.log('variant is:');
+  console.log(variant);
   gtag(
-    'event',
-    'add_to_cart',
+    'event', 'add_to_cart',
     {
+      currency: currency,
+      value: price,
       items: [{
-        id: variant.sku,
-        name: variant.name,
+        item_id: variant.sku,
+        item_name: variant.name,
         category: variant.category,
         variant: variant.options_text,
         brand: variant.brand,
@@ -40,7 +43,7 @@ Spree.ready(function(){
     var currency = event.cart.currency
 
     if (typeof gtag !== 'undefined') {
-      gaAddToCart(variant, quantity)
+      gaAddToCart(currency, variant, quantity)
     }
 
     if (typeof analytics !== 'undefined') {
