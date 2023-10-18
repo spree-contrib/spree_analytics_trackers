@@ -11,7 +11,7 @@ describe 'Visiting Products', type: :feature, js: true do
   end
 
   let!(:ga_tracker) { create(:tracker) }
-  let!(:segment_tracker) { create(:tracker, engine: :segment) }
+  let!(:segment_tracker) { create(:tracker, engine: :segment, active: false) }
 
   before do
     visit spree.products_path

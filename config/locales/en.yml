@@ -1,4 +1,11 @@
 en:
+  activemodel:
+    errors:
+      models:
+        spree/tracker:
+          attributes:
+            active:
+              store_has_already_assigned_tracker: "%{store_name} has already assigned an active tracker - please choose a different store or deactivate the other tracker"
   activerecord:
     attributes:
       spree/tracker:
