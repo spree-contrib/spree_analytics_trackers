@@ -8,9 +8,9 @@
           });
         <% end %>
         gtag('event', 'page_view', {
-          page_location: event.data.url,
-          page_path: event.srcElement.location.pathname,
-          page_title: event.srcElement.title
+          page_location: event.detail.url,
+          page_path: window.location.pathname,
+          page_title: window.document.title
         });
       }
     });
