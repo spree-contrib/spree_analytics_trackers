@@ -4,6 +4,8 @@ unless spree_version >= Gem::Version.create('3.4.0') && spree_version < Gem::Ver
     virtual_path: 'spree/wholesalers/new',
     name: 'add_google_analytics_sign_up_to_contact_information',
     insert_bottom: '[data-hook="wholesaler_inside_form"]',
-    partial: 'spree/shared/trackers/google_analytics/sign_up.js'
+    text: <<-HTML
+      <%= render partial: 'spree/shared/trackers/google_analytics/sign_up', formats: :js %>
+    HTML
   )
 end
