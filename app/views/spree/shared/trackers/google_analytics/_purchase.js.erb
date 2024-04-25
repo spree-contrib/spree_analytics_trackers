@@ -1,6 +1,6 @@
 <% if ga_enabled? && @order.present? && order_just_completed?(@order) %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
+    window.addEventListener('turbo:load', function() {
       if (typeof gtag !== 'undefined') {
         clearGAplugins();
         gtag('event', 'purchase', {

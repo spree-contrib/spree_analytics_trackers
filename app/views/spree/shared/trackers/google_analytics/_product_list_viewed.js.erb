@@ -1,6 +1,6 @@
 <% if ga_enabled? && defined?(products) && products.present? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
+    window.addEventListener('turbo:load', function() {
       if (typeof gtag !== 'undefined') {
         gtag('event', 'view_item_list', {
           item_list_id: '<%= @taxon&.id %>',

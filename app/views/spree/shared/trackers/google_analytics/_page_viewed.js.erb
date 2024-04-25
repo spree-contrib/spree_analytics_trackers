@@ -1,6 +1,6 @@
 <% if ga_enabled? %>
   <script>
-    window.addEventListener('turbolinks:load', function(event) {
+    window.addEventListener('turbo:load', function(event) {
       if (typeof gtag !== 'undefined') {
         <% if user_id = try_spree_current_user.try(:id) %>
           gtag('set', {

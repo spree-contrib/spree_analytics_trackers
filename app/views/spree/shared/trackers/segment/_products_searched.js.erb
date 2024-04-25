@@ -1,6 +1,6 @@
 <% if segment_enabled? && params.key?(:keywords) && params[:keywords].present? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
+    window.addEventListener('turbo:load', function() {
       if (typeof analytics !== 'undefined') {
         analytics.track('Products Searched', { query: '<%= params[:keywords] %>' });
         analytics.page('Products Searched', { query: '<%= params[:keywords] %>' });

@@ -1,6 +1,6 @@
 <% if segment_enabled? && @order.present? && !@order.completed? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
+    window.addEventListener('turbo:load', function() {
       if (typeof analytics !== 'undefined') {
         analytics.track('Checkout Step Viewed',
           {
@@ -18,4 +18,4 @@
       }
     });
   </script>
-<% end %>  
+<% end %>

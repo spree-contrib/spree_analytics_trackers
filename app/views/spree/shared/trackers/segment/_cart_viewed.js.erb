@@ -1,6 +1,6 @@
 <% if segment_enabled? && @order.present? && !@order.complete? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
+    window.addEventListener('turbo:load', function() {
       if (typeof analytics !== 'undefined') {
         var segmentCartJson = {
           cart_id: '<%= @order.number %>',

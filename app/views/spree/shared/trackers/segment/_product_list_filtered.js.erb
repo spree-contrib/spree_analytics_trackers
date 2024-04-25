@@ -1,6 +1,6 @@
 <% if segment_enabled? && any_filtering_params? %>
   <script>
-    window.addEventListener('turbolinks:load', function() {
+    window.addEventListener('turbo:load', function() {
       if (typeof analytics !== 'undefined') {
         var segmentProductListFilteredJson = {
           filters: [
