@@ -5,6 +5,7 @@ en:
         one: Tracker
         other: Trackers
   spree:
+    analytics: Analytics
     analytics_engine: Analytics Engine
     analytics_trackers: Analytics Trackers
     new_tracker: New Tracker
