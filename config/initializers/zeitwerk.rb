@@ -1,0 +1,1 @@
+Rails.autoloaders.main.ignore(File.join(File.dirname(__FILE__), "../../app/overrides"))
