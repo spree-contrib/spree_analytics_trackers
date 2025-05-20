@@ -1,3 +1,9 @@
+# ⚠️ Deprecation warning
+
+> [!IMPORTANT]
+> If you're on Spree 5, please head to [Spree Google Analytics gem](https://github.com/spree/spree_google_analytics). 
+> This gem is only for Spree 4.
+
 # Spree Analytics Trackers
 
 [![Build Status](https://travis-ci.org/spree-contrib/spree_analytics_trackers.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_analytics_trackers)
